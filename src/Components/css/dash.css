@@ -1,0 +1,21 @@
+.todos {
+  background: grey;
+  height: 800px;
+  width: 18%;
+  margin: 10px;
+  border: 1px solid black;
+}
+.drag {
+  background-color: silver;
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.done {
+  height: 800px;
+  width: 80%;
+  margin: 10px;
+  border: 1px solid black;
+}
