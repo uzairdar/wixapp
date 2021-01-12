@@ -1,0 +1,22 @@
+.main-cont {
+  display: flex;
+  min-height: 200px;
+  border: 1px solid black;
+}
+.onLeft {
+  width: 50%;
+  min-height: 100%;
+}
+.onRight {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  max-width: 75%;
+}
+.inner-cont {
+  margin: 25px 25px 25px 25px;
+  text-align: justify;
+}

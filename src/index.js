@@ -4,22 +4,30 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import UserReducer from "./redux/reducers/UserReducer";
-import GigReducer from "./redux/reducers/GigReducer";
+import thunk from "redux-thunk";
+import { Provider } from "react-redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+const reducers = combineReducers({
+  User: UserReducer,
+});
 
-import { loadUser } from "./redux/ActionCreators";
-// const reducers = combineReducers({
-//   User: UserReducer,
-//   Gigs: GigReducer,
-// });
-
-// const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(
+  reducers,
+  compose(
+    applyMiddleware(thunk),
+    typeof window === "object" &&
+      typeof window.devToolsExtension !== "undefined"
+      ? window.devToolsExtension()
+      : (f) => f
+  )
+);
 // store.dispatch(loadUser());
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider> */}
-    <App />
-    {/* </Provider> */}
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

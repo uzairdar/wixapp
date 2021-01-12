@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Content from "./Content";
 
 function Main(props) {
@@ -9,22 +9,16 @@ function Main(props) {
     onDragOver,
     onDragLeave,
     onDrop,
+    listItems,
   } = props;
+
   return (
     <div>
-      {/* <input
-        type="text"
-        value={contents}
-        style={{ width: "99%" }}
-        onChange={(e) => {
-          setContents(e.target.value);
-        }}
-      /> */}
-      {completedTasks.map((task, index) => (
+      {/* {completedTasks.map((task, index) => (
         <div key={task.taskID ? task.taskID : "100"}>
           {task.task ? task.task : task}
         </div>
-      ))}
+      ))} */}
       <div
         onDrop={(event) => onDrop(event)}
         onDragOver={(event) => onDragOver(event)}
@@ -33,6 +27,9 @@ function Main(props) {
       >
         <p>Drag Items here</p>
       </div>
+      <ul style={{ listStyleType: "none", padding: " 0" }}>
+        {listItems ? listItems : ""}
+      </ul>
     </div>
   );
 }
