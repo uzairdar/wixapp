@@ -1,28 +1,23 @@
-import {
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT_SUCCESS,
-  FETCH_GIGS,
-} from "./Actions";
+import { SET_ABOUT, SET_COMPLETED_TASKS } from "./Actions";
 // import axios from "axios";
 // import { baseUrl } from '../assests/serverdetails'
 
-export const setUser = (payload) => {
+// export const setUser = (payload) => {
+//   return {
+//     type: LOGIN_SUCCESS,
+//     payload: payload,
+//   };
+// };
+export const setAbout = (payload) => {
   return {
-    type: LOGIN_SUCCESS,
+    type: SET_ABOUT,
     payload: payload,
   };
 };
-
-export const loginFailed = () => {
+export const setCompleted = (payload) => {
   return {
-    type: LOGIN_FAIL,
-  };
-};
-
-export const logoutSuccess = () => {
-  return {
-    type: LOGOUT_SUCCESS,
+    type: SET_COMPLETED_TASKS,
+    payload: payload,
   };
 };
 
@@ -55,13 +50,6 @@ export const loadUser = () => {
   //       dispatch(logoutSuccess())
   //     }
   //   }
-};
-
-const setGigs = (payload) => {
-  return {
-    type: FETCH_GIGS,
-    payload: payload,
-  };
 };
 
 export const fetchGigs = (uid) => {

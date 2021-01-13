@@ -1,6 +1,2 @@
-export const USER_LOADING = 'USER_LOADING'
-export const USER_LOADED = 'USER_LOADED'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
-export const LOGIN_FAIL = 'LOGIN_FAIL'
-export const FETCH_GIGS = 'FETCH_GIGS'
+export const SET_ABOUT = "SET_ABOUT";
+export const SET_COMPLETED_TASKS = "SET_COMPLETED_TASKS";
