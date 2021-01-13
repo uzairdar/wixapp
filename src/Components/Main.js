@@ -11,7 +11,6 @@ function Main(props) {
     onDrop,
     listItems,
   } = props;
-
   return (
     <div>
       {/* {completedTasks.map((task, index) => (
@@ -27,9 +26,7 @@ function Main(props) {
       >
         <p>Drag Items here</p>
       </div>
-      <ul style={{ listStyleType: "none", padding: " 0" }}>
-        {listItems ? listItems : ""}
-      </ul>
+      <ul style={{ listStyleType: "none", padding: " 0" }}>{listItems}</ul>
     </div>
   );
 }

@@ -21,10 +21,14 @@ const store = createStore(
       : (f) => f
   )
 );
+//const a = "uzair";
 // store.dispatch(loadUser());
-
+export const StoreContext = React.createContext();
 ReactDOM.render(
   <React.StrictMode>
+    {/* <StoreContext.Provider value={store}>
+      <App />
+    </StoreContext.Provider> */}
     <Provider store={store}>
       <App />
     </Provider>

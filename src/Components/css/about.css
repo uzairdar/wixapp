@@ -16,6 +16,10 @@
   color: red;
   max-width: 75%;
 }
+.about-btns {
+  display: flex;
+  justify-content: flex-end;
+}
 .inner-cont {
   margin: 25px 25px 25px 25px;
   text-align: justify;

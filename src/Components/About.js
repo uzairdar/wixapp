@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./css/about.css";
 import about from "./assets/about.jpg";
 function About(props) {
@@ -6,12 +6,72 @@ function About(props) {
     subtitle,
     contents,
     heading,
-    setVisible,
-    visible,
+    // setVisible,
+    // visible,
+    index,
     setValues,
-    setKeys,
+    // setKeys,
   } = props;
+  const [count, setCount] = useState(0);
+  const getData = (title) => {
+    return { index, title, subtitle, contents, heading };
+  };
 
+  const [arr, setArr] = useState([
+    <h2
+      onClick={(e) => {
+        console.log("vals", e.target.innerHTML);
+        const data = getData("heading");
+
+        setValues(data);
+        console.log("location:", index);
+      }}
+    >
+      {heading}
+    </h2>,
+    <p
+      onClick={(e) => {
+        const data = getData("subtitle");
+        setValues(data);
+        console.log("vals", e.target.innerHTML);
+      }}
+    >
+      {subtitle}
+    </p>,
+    <p
+      onClick={(e) => {
+        const data = getData("contents");
+        setValues(data);
+        console.log("vals", e.target.innerHTML);
+      }}
+    >
+      {contents}
+    </p>,
+  ]);
+  const goUp = () => {
+    var arr2 = arr;
+    [
+      arr2[count % arr2.length],
+      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
+    ] = [
+      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
+      arr2[count % arr2.length],
+    ];
+    setArr(arr2);
+    setCount(count - 1 < 0 ? arr2.length - 1 : count - 1);
+  };
+  const goDown = () => {
+    // var obj;
+    // obj=arr2[index]
+    var arr2 = arr;
+
+    [arr2[count % arr2.length], arr2[(count + 1) % arr2.length]] = [
+      arr2[(count + 1) % arr2.length],
+      arr2[count % arr2.length],
+    ];
+    setArr(arr2);
+    setCount(count + 1);
+  };
   return (
     <div>
       <div className="main-cont">
@@ -20,28 +80,28 @@ function About(props) {
         </div>
         <div className="onRight">
           <div className="inner-cont">
-            <h2
+            <div className="about-btns">
+              <button onClick={() => goUp()}>Up</button>
+              <button onClick={() => goDown()}>Down</button>
+            </div>
+            {arr.map((single) => single)}
+            {/* <h2
               className="heading"
               onClick={(e) => {
-                if (visible) {
-                } else {
-                  setVisible(!visible);
-                }
-                setValues(e.target.innerHTML);
-                setKeys("heading");
                 console.log("vals", e.target.innerHTML);
+                const data = getData("heading");
+
+                setValues(data);
+                console.log("location:", index);
               }}
             >
               {heading}
             </h2>
             <p
               onClick={(e) => {
-                if (visible) {
-                } else {
-                  setVisible(!visible);
-                }
-                setValues(e.target.innerHTML);
-                setKeys("subtitle");
+                const data = getData("subtitle");
+
+                setValues(data);
 
                 console.log("vals", e.target.innerHTML);
               }}
@@ -50,17 +110,13 @@ function About(props) {
             </p>
             <p
               onClick={(e) => {
-                if (visible) {
-                } else {
-                  setVisible(!visible);
-                }
-                setValues(e.target.innerHTML);
-                setKeys("content");
+                const data = getData("contents");
+                setValues(data);
                 console.log("vals", e.target.innerHTML);
               }}
             >
               {contents}
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
