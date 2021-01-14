@@ -1,4 +1,4 @@
-import { SET_ABOUT, SET_COMPLETED_TASKS } from "./Actions";
+import { LOAD_COMPLETED, SET_ABOUT, SET_COMPLETED_TASKS } from "./Actions";
 // import axios from "axios";
 // import { baseUrl } from '../assests/serverdetails'
 
@@ -18,6 +18,11 @@ export const setCompleted = (payload) => {
   return {
     type: SET_COMPLETED_TASKS,
     payload: payload,
+  };
+};
+export const loadCompleted = () => {
+  return {
+    type: LOAD_COMPLETED,
   };
 };
 

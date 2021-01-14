@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Content from "./Content";
 
 function Main(props) {
@@ -7,17 +7,15 @@ function Main(props) {
     setContents,
     completedTasks,
     onDragOver,
+    setCompletedTasks,
     onDragLeave,
     onDrop,
     listItems,
   } = props;
+  const [count, setCount] = useState(0);
+
   return (
     <div>
-      {/* {completedTasks.map((task, index) => (
-        <div key={task.taskID ? task.taskID : "100"}>
-          {task.task ? task.task : task}
-        </div>
-      ))} */}
       <div
         onDrop={(event) => onDrop(event)}
         onDragOver={(event) => onDragOver(event)}
@@ -26,7 +24,15 @@ function Main(props) {
       >
         <p>Drag Items here</p>
       </div>
-      <ul style={{ listStyleType: "none", padding: " 0" }}>{listItems}</ul>
+      {console.log("completed", completedTasks)}
+      {completedTasks &&
+        completedTasks.map((task, index) => (
+          <div>
+            <div key={task.taskID ? task.taskID : "100"}>
+              {task.task ? task.task : task}
+            </div>
+          </div>
+        ))}
     </div>
   );
 }
