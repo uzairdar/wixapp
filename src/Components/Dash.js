@@ -10,7 +10,7 @@ import Main from "./Main";
 import SingleItem from "./SingleItem";
 import About from "./About";
 import Edit from "./Edit";
-import { setAbout, setCompleted } from "../redux/ActionCreators";
+import { loadCompleted, setAbout, setCompleted } from "../redux/ActionCreators";
 const data = [
   {
     taskID: 1,
@@ -23,6 +23,7 @@ const data = [
 ];
 
 function Dash(props) {
+  const { tasks } = props;
   const [todos, setTodos] = useState(data);
   const [listItems, setListItems] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
@@ -31,39 +32,65 @@ function Dash(props) {
   const [check, setCheck] = useState(false);
   const [values, setValues] = useState({});
   const [heading, setHeading] = useState("About");
+  const [tempArr, setTempArr] = useState([]);
   const [keys, setKeys] = useState(null);
   const [subtitle, setSubtitle] = useState("Subtitles");
   const [contents, setContents] = useState(
     "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used inlaying out print, graphic or web designs. The passage is attributed toan unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a  type specimen book."
   );
+  const { task } = props;
   var el = document.querySelector(".drag");
-  var SortableItem = sortable(SingleItem);
-
-  const onSortItems = (items) => {
-    setCompletedTasks(items);
-    setCheck(true);
-  };
   useEffect(() => {
     setCheck(false);
+    // console.log("uoiuiu", props.loadData());
     props.setCompleteData(completedTasks);
+    console.log("propss are", props);
+
     // props.setAboutData({ heading, subtitle, contents });
-    fetchArr();
-  }, [completedTasks, check]);
-  const fetchArr = () => {
-    var state = completedTasks.map((item, i) => {
-      return (
-        <SortableItem
-          key={i}
-          onSortItems={onSortItems}
-          items={completedTasks}
-          sortId={i}
-          // onClick={() => console.log("index", i)}
-        >
-          {item}
-        </SortableItem>
-      );
-    });
-    setListItems(state);
+  }, [completedTasks, check, task]);
+
+  const goUp = (count, tasks2) => {
+    console.log("arr2", tasks2);
+    console.log("yes", count);
+    var arr2 = tasks2;
+    [
+      arr2[count % arr2.length],
+      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
+    ] = [
+      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
+      arr2[count % arr2.length],
+    ];
+    setCompletedTasks(arr2);
+    // setCount(count - 1 < 0 ? arr2.length - 1 : count - 1);
+    props.setCompleteData(arr2);
+  };
+  const goDown = (count, tasks2) => {
+    // var obj;
+    // obj=arr2[index]
+    var arr2 = tasks2;
+    console.log("down", tasks2);
+    var arr2 = tasks2;
+    // var i;
+    // for (i = count; i < arr2.length + count; i++) {
+    //   if (i + 1 < arr2.length) {
+    //     [arr2[i], arr2[i + 1]] = [arr2[i + 1], arr2[i]];
+    //   } else {
+    //     [arr2[i % arr2.length], arr2[(i % arr2.length) + 1]] = [
+    //       arr2[(i % arr2.length) + 1],
+    //       arr2[i % arr2.length],
+    //     ];
+    //   }
+    // }
+
+    [arr2[count % arr2.length], arr2[(count + 1) % arr2.length]] = [
+      arr2[(count + 1) % arr2.length],
+      arr2[count % arr2.length],
+    ];
+    console.log("check", arr2);
+    setCompletedTasks(arr2);
+    props.setCompleteData(arr2);
+
+    // setCount(count + 1);
   };
   const onDragOver = (event) => {
     event.preventDefault();
@@ -79,27 +106,34 @@ function Dash(props) {
     el.style.backgroundColor = "silver";
   };
   const onDrop = (event) => {
+    var index;
     event.preventDefault();
     if (draggedTask.taskID === 1) {
-      setCompletedTasks((arr) => [...arr, <Header />]);
+      index = completedTasks.length;
+      setCompletedTasks((arr) => [
+        ...arr,
+        <Header goUp={goUp} goDown={goDown} index={index} />,
+      ]);
       setDraggedTask({});
+
       el.style.backgroundColor = "silver";
     } else if (draggedTask.taskID === 2) {
-      var index = completedTasks.length;
+      index = completedTasks.length;
       setCompletedTasks((arr) => [
         ...arr,
         <About
           subtitle={subtitle}
           heading={heading}
           contents={contents}
-          // setKeys={setKeys}
+          goUp={goUp}
+          goDown={goDown}
           index={index}
-          setValues={setValues}
-          // setVisible={setVisible}
-          // visible={visible}
         />,
       ]);
       setDraggedTask({});
+      // props.setCompleteData(completedTasks);
+
+      // props.setCompleteData(completedTasks);
       el.style.backgroundColor = "silver";
     }
   };
@@ -110,8 +144,6 @@ function Dash(props) {
           <Edit
             values={values}
             setValues={setValues}
-            completedTasks={completedTasks}
-            setCompletedTasks={setCompletedTasks}
             setHeading={setHeading}
             setContents={setContents}
             contents={contents}
@@ -124,7 +156,8 @@ function Dash(props) {
       <div className="done">
         <Main
           setContents={setContents}
-          completedTasks={completedTasks}
+          completedTasks={tasks}
+          // setCompletedTasks={""}
           listItems={listItems}
           contents={contents}
           onDrop={onDrop}
@@ -139,14 +172,18 @@ function Dash(props) {
   );
 }
 const mapStateToProps = (state) => {
-  console.log(state.User);
-  const { user } = state.User;
-  return { user };
+  console.log("state", state.User);
+  // const { user } = state.state;
+  // const {tasks}=
+  const { User } = state;
+  const tasks = User.completedTasks;
+  return { User, tasks };
 };
 const mapDispatchtoProps = (dispatch) => {
   return {
     setAboutData: (data) => dispatch(setAbout(data)),
     setCompleteData: (data) => dispatch(setCompleted(data)),
+    loadData: () => dispatch(loadCompleted),
   };
 };
 export default connect(mapStateToProps, mapDispatchtoProps)(Dash);

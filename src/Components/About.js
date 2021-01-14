@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./css/about.css";
 import about from "./assets/about.jpg";
+import { connect } from "react-redux";
 function About(props) {
   const {
     subtitle,
     contents,
+    index,
     heading,
     // setVisible,
     // visible,
-    index,
+    completedTasks,
+    goDown,
+    goUp,
     setValues,
     // setKeys,
   } = props;
@@ -16,62 +20,8 @@ function About(props) {
   const getData = (title) => {
     return { index, title, subtitle, contents, heading };
   };
-
-  const [arr, setArr] = useState([
-    <h2
-      onClick={(e) => {
-        console.log("vals", e.target.innerHTML);
-        const data = getData("heading");
-
-        setValues(data);
-        console.log("location:", index);
-      }}
-    >
-      {heading}
-    </h2>,
-    <p
-      onClick={(e) => {
-        const data = getData("subtitle");
-        setValues(data);
-        console.log("vals", e.target.innerHTML);
-      }}
-    >
-      {subtitle}
-    </p>,
-    <p
-      onClick={(e) => {
-        const data = getData("contents");
-        setValues(data);
-        console.log("vals", e.target.innerHTML);
-      }}
-    >
-      {contents}
-    </p>,
-  ]);
-  const goUp = () => {
-    var arr2 = arr;
-    [
-      arr2[count % arr2.length],
-      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
-    ] = [
-      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
-      arr2[count % arr2.length],
-    ];
-    setArr(arr2);
-    setCount(count - 1 < 0 ? arr2.length - 1 : count - 1);
-  };
-  const goDown = () => {
-    // var obj;
-    // obj=arr2[index]
-    var arr2 = arr;
-
-    [arr2[count % arr2.length], arr2[(count + 1) % arr2.length]] = [
-      arr2[(count + 1) % arr2.length],
-      arr2[count % arr2.length],
-    ];
-    setArr(arr2);
-    setCount(count + 1);
-  };
+  console.log("hello", index);
+  const { tasks } = props;
   return (
     <div>
       <div className="main-cont">
@@ -81,14 +31,14 @@ function About(props) {
         <div className="onRight">
           <div className="inner-cont">
             <div className="about-btns">
-              <button onClick={() => goUp()}>Up</button>
-              <button onClick={() => goDown()}>Down</button>
+              <button onClick={() => goUp(index, tasks)}>Up</button>
+              <button onClick={() => goDown(index, tasks)}>Down</button>
             </div>
-            {arr.map((single) => single)}
-            {/* <h2
+            {/* {arr.map((single) => single)} */}
+            <h2
               className="heading"
               onClick={(e) => {
-                console.log("vals", e.target.innerHTML);
+                console.log("val", e.target.innerHTML);
                 const data = getData("heading");
 
                 setValues(data);
@@ -116,12 +66,19 @@ function About(props) {
               }}
             >
               {contents}
-            </p> */}
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default About;
+const mapStateToProps = (state) => {
+  console.log("state", state.User);
+  // const { user } = state.state;
+  // const {tasks}=
+  const { User } = state;
+  const tasks = User.completedTasks;
+  return { User, tasks };
+};
+export default connect(mapStateToProps)(About);

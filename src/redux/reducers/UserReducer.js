@@ -6,6 +6,7 @@ import {
   LOGIN_FAIL,
   SET_ABOUT,
   SET_COMPLETED_TASKS,
+  LOAD_COMPLETED,
 } from "../Actions";
 const initialState = {
   // isLoading: false,
@@ -32,6 +33,10 @@ const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         completedTasks: action.payload,
+      };
+    case LOAD_COMPLETED:
+      return {
+        ...state,
       };
     // case LOGIN_SUCCESS:
     //   localStorage.setItem("token", action.payload.token);
