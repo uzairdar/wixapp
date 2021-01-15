@@ -24,22 +24,26 @@ const data = [
 
 function Dash(props) {
   const { tasks } = props;
+  const { Index } = props;
   const [todos, setTodos] = useState(data);
   const [listItems, setListItems] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [draggedTask, setDraggedTask] = useState({});
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [check, setCheck] = useState(false);
   const [values, setValues] = useState({});
   const [heading, setHeading] = useState("About");
   const [tempArr, setTempArr] = useState([]);
   const [keys, setKeys] = useState(null);
   const [subtitle, setSubtitle] = useState("Subtitles");
+  // const [index, setIndex] = useState(0);
   const [contents, setContents] = useState(
     "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used inlaying out print, graphic or web designs. The passage is attributed toan unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a  type specimen book."
   );
-  const { task } = props;
   var el = document.querySelector(".drag");
+  useEffect(() => {
+    setCompletedTasks(tasks);
+  }, []);
   useEffect(() => {
     setCheck(false);
     // console.log("uoiuiu", props.loadData());
@@ -47,50 +51,46 @@ function Dash(props) {
     console.log("propss are", props);
 
     // props.setAboutData({ heading, subtitle, contents });
-  }, [completedTasks, check, task]);
+  }, [completedTasks, check, props.heading]);
 
   const goUp = (count, tasks2) => {
-    console.log("arr2", tasks2);
-    console.log("yes", count);
+    console.log("index", Index);
     var arr2 = tasks2;
     [
-      arr2[count % arr2.length],
-      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
+      arr2[Index % arr2.length],
+      arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
     ] = [
-      arr2[(count - 1 < 0 ? arr2.length - 1 : count - 1) % arr2.length],
-      arr2[count % arr2.length],
+      arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
+      arr2[Index % arr2.length],
     ];
     setCompletedTasks(arr2);
-    // setCount(count - 1 < 0 ? arr2.length - 1 : count - 1);
     props.setCompleteData(arr2);
   };
   const goDown = (count, tasks2) => {
-    // var obj;
-    // obj=arr2[index]
     var arr2 = tasks2;
-    console.log("down", tasks2);
+    console.log("index", count);
+
     var arr2 = tasks2;
-    // var i;
-    // for (i = count; i < arr2.length + count; i++) {
-    //   if (i + 1 < arr2.length) {
-    //     [arr2[i], arr2[i + 1]] = [arr2[i + 1], arr2[i]];
-    //   } else {
-    //     [arr2[i % arr2.length], arr2[(i % arr2.length) + 1]] = [
-    //       arr2[(i % arr2.length) + 1],
-    //       arr2[i % arr2.length],
-    //     ];
-    //   }
+
+    var i;
+    var temp = arr2[0];
+    // if (count + 1 < arr2.length) {
+    //   [arr2[count], arr2[count + 1]] = [arr2[count + 1], arr2[count]];
+    // }
+    // arr2[0] = arr2[arr2.length - 1];
+    // arr2[1] = temp;
+    // for (i = 2; i < arr2.length; i++) {
+    //   arr2[i] = arr2[i + 1];
     // }
 
-    [arr2[count % arr2.length], arr2[(count + 1) % arr2.length]] = [
-      arr2[(count + 1) % arr2.length],
-      arr2[count % arr2.length],
+    console.log("newar", arr2);
+    [arr2[Index % arr2.length], arr2[(Index + 1) % arr2.length]] = [
+      arr2[(Index + 1) % arr2.length],
+      arr2[Index % arr2.length],
     ];
     console.log("check", arr2);
     setCompletedTasks(arr2);
     props.setCompleteData(arr2);
-
-    // setCount(count + 1);
   };
   const onDragOver = (event) => {
     event.preventDefault();
@@ -112,7 +112,12 @@ function Dash(props) {
       index = completedTasks.length;
       setCompletedTasks((arr) => [
         ...arr,
-        <Header goUp={goUp} goDown={goDown} index={index} />,
+        <Header
+          goUp={goUp}
+          goDown={goDown}
+          setVisible={setVisible}
+          index={index}
+        />,
       ]);
       setDraggedTask({});
 
@@ -122,10 +127,9 @@ function Dash(props) {
       setCompletedTasks((arr) => [
         ...arr,
         <About
-          subtitle={subtitle}
-          heading={heading}
-          contents={contents}
+          setVisible={setVisible}
           goUp={goUp}
+          setValues={setValues}
           goDown={goDown}
           index={index}
         />,
@@ -176,8 +180,10 @@ const mapStateToProps = (state) => {
   // const { user } = state.state;
   // const {tasks}=
   const { User } = state;
+  const heading = User.data.Heading;
   const tasks = User.completedTasks;
-  return { User, tasks };
+  const Index = User.index;
+  return { User, tasks, Index };
 };
 const mapDispatchtoProps = (dispatch) => {
   return {

@@ -1,4 +1,10 @@
-import { LOAD_COMPLETED, SET_ABOUT, SET_COMPLETED_TASKS } from "./Actions";
+import {
+  LOAD_COMPLETED,
+  SET_ABOUT,
+  SET_COMPLETED_TASKS,
+  SET_DATA,
+  SET_INDEX,
+} from "./Actions";
 // import axios from "axios";
 // import { baseUrl } from '../assests/serverdetails'
 
@@ -11,6 +17,18 @@ import { LOAD_COMPLETED, SET_ABOUT, SET_COMPLETED_TASKS } from "./Actions";
 export const setAbout = (payload) => {
   return {
     type: SET_ABOUT,
+    payload: payload,
+  };
+};
+export const setIndex = (payload) => {
+  return {
+    type: SET_INDEX,
+    payload: payload,
+  };
+};
+export const setData = (payload) => {
+  return {
+    type: SET_DATA,
     payload: payload,
   };
 };

@@ -1,6 +1,7 @@
 .main-cont {
   display: flex;
   min-height: 200px;
+  height: 100%;
   border: 1px solid black;
 }
 .onLeft {
@@ -21,7 +22,11 @@
   display: flex;
   justify-content: flex-end;
 }
+.alignment {
+  display: flex;
+  justify-content: space-between;
+}
 .inner-cont {
-  margin: 0px 0px 25px 25px;
+  margin: 0px 0px 0px 0px;
   text-align: justify;
 }
