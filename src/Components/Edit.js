@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 function Edit(props) {
   const {
@@ -14,7 +15,7 @@ function Edit(props) {
     setSubtitle,
   } = props;
   useEffect(() => {
-    console.log("here", values);
+    console.log("editsss", values);
   }, [props]);
   return (
     <div>
@@ -48,5 +49,16 @@ function Edit(props) {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  // const { user } = state.state;
+  // const {tasks}=
+  const { User } = state;
+  console.log("state", User);
 
-export default Edit;
+  const tasks = User.completedTasks;
+  const heading = User.data.Heading;
+  const contents = User.data.Content;
+  const subtitle = User.data.Subtitle;
+  return { User, tasks, heading, contents, subtitle };
+};
+export default connect(mapStateToProps)(Edit);

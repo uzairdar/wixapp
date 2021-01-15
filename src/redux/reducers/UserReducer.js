@@ -7,13 +7,17 @@ import {
   SET_ABOUT,
   SET_COMPLETED_TASKS,
   LOAD_COMPLETED,
+  SET_INDEX,
+  SET_DATA,
 } from "../Actions";
 const initialState = {
   // isLoading: false,
   // isAuthenticated: null,
   // user: null,
   completedTasks: [],
+  index: 0,
   data: {
+    title: "about",
     Heading: "Heading",
     Subtitle: "Subtitle",
     Content:
@@ -37,6 +41,16 @@ const UserReducer = (state = initialState, action) => {
     case LOAD_COMPLETED:
       return {
         ...state,
+      };
+    case SET_INDEX:
+      return {
+        ...state,
+        index: action.payload,
+      };
+    case SET_DATA:
+      return {
+        ...state,
+        data: action.payload,
       };
     // case LOGIN_SUCCESS:
     //   localStorage.setItem("token", action.payload.token);

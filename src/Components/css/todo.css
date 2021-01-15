@@ -1,0 +1,6 @@
+.hidden {
+  display: none;
+  width: 70%;
+  height: 150px;
+  border-right: 1px solid black;
+}

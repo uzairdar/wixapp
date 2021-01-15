@@ -27,10 +27,11 @@ function Main(props) {
       {console.log("completed", completedTasks)}
       {completedTasks &&
         completedTasks.map((task, index) => (
-          <div>
-            <div key={task.taskID ? task.taskID : "100"}>
-              {task.task ? task.task : task}
-            </div>
+          <div
+            style={{ minHeight: "200px" }}
+            key={task.taskID ? task.taskID : "100"}
+          >
+            {task.task ? task.task : task}
           </div>
         ))}
     </div>

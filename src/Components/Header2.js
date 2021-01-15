@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./css/header.css";
 import { connect } from "react-redux";
-import header from "./assets/header.jpg";
+import profile from "./assets/profile.jpg";
 import ButtonGroups from "./ButtonGroups";
 const showDropdown = () => {
   var x = document.getElementById("myTopnav");
   x.classList.toggle("topnavFull");
 };
-function Header(props) {
+function Header2(props) {
   const { index, goUp, goDown, moveUp, completedTasks, tasks } = props;
   const imageUrl =
     "http://demos.telerik.com/kendo-ui/content/shared/icons/16/star.png";
@@ -24,7 +24,7 @@ function Header(props) {
         <button onClick={() => goDown(index, props.tasks)}>Down</button>
       </div> */}
       <img
-        src={header}
+        src={profile}
         width="100%"
         height="180px"
         onClick={(e) => {
@@ -43,4 +43,4 @@ const mapStateToProps = (state) => {
   const tasks = User.completedTasks;
   return { User, tasks };
 };
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(Header2);

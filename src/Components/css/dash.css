@@ -4,7 +4,7 @@
 .todos {
   background: grey;
   min-height: 100%;
-  width: 18%;
+  width: 30%;
   margin: 10px;
   border: 1px solid black;
 }
@@ -23,7 +23,7 @@
 }
 .done {
   min-height: 100%;
-  min-width: 60%;
+  min-width: 50%;
   width: 80%;
   margin: 10px;
   border: 1px solid black;
