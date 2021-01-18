@@ -51,18 +51,26 @@ function Dash(props) {
     console.log("propss are", props);
 
     // props.setAboutData({ heading, subtitle, contents });
-  }, [completedTasks, check, props.heading]);
+  }, [completedTasks, check]);
 
   const goUp = (count, tasks2) => {
     console.log("index", Index);
     var arr2 = tasks2;
-    [
-      arr2[Index % arr2.length],
-      arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
-    ] = [
-      arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
-      arr2[Index % arr2.length],
-    ];
+    if (Index !== 0) {
+      [arr2[Index], arr2[Index - 1]] = [arr2[Index - 1], arr2[Index]];
+    } else {
+      [arr2[Index], arr2[tasks.length - 1]] = [
+        arr2[tasks.length - 1],
+        arr2[Index],
+      ];
+    }
+    // [
+    //   arr2[Index % arr2.length],
+    //   arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
+    // ] = [
+    //   arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
+    //   arr2[Index % arr2.length],
+    // ];
     setCompletedTasks(arr2);
     props.setCompleteData(arr2);
   };
@@ -72,8 +80,6 @@ function Dash(props) {
 
     var arr2 = tasks2;
 
-    var i;
-    var temp = arr2[0];
     // if (count + 1 < arr2.length) {
     //   [arr2[count], arr2[count + 1]] = [arr2[count + 1], arr2[count]];
     // }
@@ -82,12 +88,16 @@ function Dash(props) {
     // for (i = 2; i < arr2.length; i++) {
     //   arr2[i] = arr2[i + 1];
     // }
-
-    console.log("newar", arr2);
-    [arr2[Index % arr2.length], arr2[(Index + 1) % arr2.length]] = [
-      arr2[(Index + 1) % arr2.length],
-      arr2[Index % arr2.length],
-    ];
+    if (Index !== tasks.length) {
+      [arr2[Index], arr2[Index + 1]] = [arr2[Index + 1], arr2[Index]];
+    } else {
+      [arr2[Index], arr2[0]] = [arr2[0], arr2[Index]];
+    }
+    // console.log("newar", arr2);
+    // [arr2[Index % arr2.length], arr2[(Index + 1) % arr2.length]] = [
+    //   arr2[(Index + 1) % arr2.length],
+    //   arr2[Index % arr2.length],
+    // ];
     console.log("check", arr2);
     setCompletedTasks(arr2);
     props.setCompleteData(arr2);
@@ -110,15 +120,7 @@ function Dash(props) {
     event.preventDefault();
     if (draggedTask.taskID === 1) {
       index = completedTasks.length;
-      setCompletedTasks((arr) => [
-        ...arr,
-        <Header
-          goUp={goUp}
-          goDown={goDown}
-          setVisible={setVisible}
-          index={index}
-        />,
-      ]);
+      setCompletedTasks((arr) => [...arr, <Header Editable="false" />]);
       setDraggedTask({});
 
       el.style.backgroundColor = "silver";
@@ -127,17 +129,15 @@ function Dash(props) {
       setCompletedTasks((arr) => [
         ...arr,
         <About
-          setVisible={setVisible}
-          goUp={goUp}
-          setValues={setValues}
-          goDown={goDown}
-          index={index}
+          section="main"
+          title="About"
+          heading={heading}
+          subtitle={subtitle}
+          contents={contents}
+          Editable="true"
         />,
       ]);
       setDraggedTask({});
-      // props.setCompleteData(completedTasks);
-
-      // props.setCompleteData(completedTasks);
       el.style.backgroundColor = "silver";
     }
   };
@@ -160,10 +160,12 @@ function Dash(props) {
       <div className="done">
         <Main
           setContents={setContents}
-          completedTasks={tasks}
-          // setCompletedTasks={""}
-          listItems={listItems}
+          // completedTasks={tasks}
           contents={contents}
+          goDown={goDown}
+          section="main"
+          setVisible={setVisible}
+          goUp={goUp}
           onDrop={onDrop}
           onDragLeave={onDragLeave}
           onDragOver={onDragOver}

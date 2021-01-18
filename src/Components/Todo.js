@@ -21,7 +21,7 @@ function Todo(props) {
     }
   };
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", justifyContent: "flex-end" }}>
       <div
         className="hidden"
         onDrag={(event) => {
@@ -31,7 +31,15 @@ function Todo(props) {
       >
         {item}
       </div>
-      <div style={{ width: "30%" }}>
+      <div
+        style={{
+          width: "30%",
+          display: "flex",
+          // border: "1px solid black",
+          flexDirection: "column",
+          alignItems: "flex-end",
+        }}
+      >
         {todos.map((todo) => (
           <div
             // draggable

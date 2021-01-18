@@ -6,9 +6,15 @@ import ButtonGroups from "./ButtonGroups";
 function About(props) {
   const {
     subtitle,
+    newSub,
+    newHead,
+    newCont,
     contents,
     index,
+    title,
     heading,
+    values,
+    section,
     // setVisible,
     // visible,
     completedTasks,
@@ -19,14 +25,11 @@ function About(props) {
     // setKeys,
   } = props;
   const [count, setCount] = useState(0);
-  const getData = (title) => {
-    return { index, title, subtitle, contents, heading };
-  };
 
   const { tasks } = props;
   return (
     <div>
-      {goUp && (
+      {/* {goUp && (
         <ButtonGroups
           setVisible={setVisible}
           index={index}
@@ -35,7 +38,7 @@ function About(props) {
           goUp={goUp}
           goDown={goDown}
         />
-      )}
+      )} */}
       <div className="main-cont">
         <div className="onLeft">
           <img src={about} style={{ width: "100%", height: "100%" }} />
@@ -47,9 +50,27 @@ function About(props) {
               <button onClick={() => goDown(index, tasks)}>Down</button>
             </div> */}
             {/* {arr.map((single) => single)} */}
-            <h3 className="heading">{index ? heading : "no heading"}</h3>
-            <p>{index ? subtitle : "no subtitle"} </p>
-            <p>{index ? contents : "no content"}</p>
+            <h3 className="heading">
+              {section === "main"
+                ? newHead
+                  ? newHead
+                  : heading
+                : "no heading"}
+            </h3>
+            <p>
+              {section === "main"
+                ? newSub
+                  ? newSub
+                  : subtitle
+                : "no subtitle"}{" "}
+            </p>
+            <p>
+              {section === "main"
+                ? newCont
+                  ? newCont
+                  : contents
+                : "no content"}
+            </p>
           </div>
         </div>
       </div>
@@ -63,9 +84,9 @@ const mapStateToProps = (state) => {
   console.log("state", User);
 
   const tasks = User.completedTasks;
-  const heading = User.data.Heading;
-  const contents = User.data.Content;
-  const subtitle = User.data.Subtitle;
-  return { User, tasks, heading, contents, subtitle };
+  // const heading = User.data.Heading;
+  // const contents = User.data.Content;
+  // const subtitle = User.data.Subtitle;
+  return { User, tasks };
 };
 export default connect(mapStateToProps)(About);

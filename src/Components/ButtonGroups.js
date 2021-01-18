@@ -1,30 +1,53 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { setIndex } from "../redux/ActionCreators";
+import { setIndex, setTitle } from "../redux/ActionCreators";
 
 function ButtonGroups({
   index,
   tasks,
   goUp,
   goDown,
-  title,
+  Editable,
   setVisible,
+  setTitleData,
   setIndexData,
 }) {
   return (
     <div className="alignment">
-      <button
-        onClick={() => {
-          setIndexData(index);
-          setVisible(true);
-        }}
-      >
-        Edit
-      </button>
+      {console.log("objectsss", Editable)}
+      {tasks[index].props.Editable === "true" && (
+        <button
+          onClick={() => {
+            setIndexData(index);
+            setVisible(true);
+            // setTitleData(title);
+          }}
+        >
+          Edit
+        </button>
+      )}
+      {tasks[index].props.Editable === "false" && (
+        <button onClick={() => setVisible(false)}>Cant edit</button>
+      )}
       <div className="about-btns">
-        <button onClick={() => goUp(index, tasks)}>Up</button>
-        <button onClick={() => goDown(index, tasks)}>Down</button>
+        <button
+          onClick={() => {
+            setVisible(false);
+            goUp(index, tasks);
+          }}
+        >
+          Up
+        </button>
+        <button
+          onClick={() => {
+            setVisible(false);
+
+            goDown(index, tasks);
+          }}
+        >
+          Down
+        </button>
       </div>
     </div>
   );
@@ -41,6 +64,7 @@ const mapStateToProps = (state) => {
 const mapDispatchtoProps = (dispatch) => {
   return {
     setIndexData: (data) => dispatch(setIndex(data)),
+    setTitleData: (data) => dispatch(setTitle(data)),
   };
 };
 export default connect(mapStateToProps, mapDispatchtoProps)(ButtonGroups);
