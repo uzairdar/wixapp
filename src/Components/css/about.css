@@ -9,7 +9,6 @@
   min-height: 100%;
 }
 .onRight {
-  border: 1px solid black;
   height: 100%;
   width: 50%;
   display: flex;

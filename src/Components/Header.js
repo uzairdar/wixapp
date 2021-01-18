@@ -16,20 +16,12 @@ function Header(props) {
   }, [completedTasks]);
   return (
     <div style={{ height: "200px" }}>
-      {goUp && (
-        <ButtonGroups index={index} tasks={tasks} goUp={goUp} goDown={goDown} />
-      )}
-      {/* <div className="about-btns">
-        <button onClick={() => goUp(index, props.tasks)}>Up</button>
-        <button onClick={() => goDown(index, props.tasks)}>Down</button>
-      </div> */}
       <img
         src={header}
         width="100%"
         height="180px"
         onClick={(e) => {
           e.preventDefault();
-          //history.push('/Home')
         }}
       />
     </div>

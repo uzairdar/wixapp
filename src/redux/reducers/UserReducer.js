@@ -9,6 +9,8 @@ import {
   LOAD_COMPLETED,
   SET_INDEX,
   SET_DATA,
+  SET_TITLE,
+  SET_HEADING,
 } from "../Actions";
 const initialState = {
   // isLoading: false,
@@ -16,8 +18,8 @@ const initialState = {
   // user: null,
   completedTasks: [],
   index: 0,
+  title: "about",
   data: {
-    title: "about",
     Heading: "Heading",
     Subtitle: "Subtitle",
     Content:
@@ -32,6 +34,16 @@ const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+    case SET_HEADING:
+      return {
+        ...state,
+        data: { ...state.data, Heading: action.payload },
+      };
+    case SET_TITLE:
+      return {
+        ...state,
+        title: action.payload,
       };
     case SET_COMPLETED_TASKS:
       return {

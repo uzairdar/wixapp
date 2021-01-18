@@ -3,3 +3,7 @@ export const SET_COMPLETED_TASKS = "SET_COMPLETED_TASKS";
 export const LOAD_COMPLETED = "LOAD_COMPLETED";
 export const SET_INDEX = "SET_INDEX";
 export const SET_DATA = "SET_DATA";
+export const SET_HEADING = "SET_HEADING";
+export const SET_SUBTITLE = "SET_SUBTITLE";
+export const SET_CONTENT = "SET_CONTENT";
+export const SET_TITLE = "SET_TITLE";

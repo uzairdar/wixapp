@@ -2,8 +2,12 @@ import {
   LOAD_COMPLETED,
   SET_ABOUT,
   SET_COMPLETED_TASKS,
+  SET_CONTENT,
   SET_DATA,
+  SET_HEADING,
   SET_INDEX,
+  SET_SUBTITLE,
+  SET_TITLE,
 } from "./Actions";
 // import axios from "axios";
 // import { baseUrl } from '../assests/serverdetails'
@@ -17,6 +21,30 @@ import {
 export const setAbout = (payload) => {
   return {
     type: SET_ABOUT,
+    payload: payload,
+  };
+};
+export const setHeading = (payload) => {
+  return {
+    type: SET_HEADING,
+    payload: payload,
+  };
+};
+export const setSubtitle = (payload) => {
+  return {
+    type: SET_SUBTITLE,
+    payload: payload,
+  };
+};
+export const setContent = (payload) => {
+  return {
+    type: SET_CONTENT,
+    payload: payload,
+  };
+};
+export const setTitle = (payload) => {
+  return {
+    type: SET_TITLE,
     payload: payload,
   };
 };

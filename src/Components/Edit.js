@@ -1,5 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { setCompleted, setData, setHeading } from "../redux/ActionCreators";
+import About from "./About";
+import AboutEdit from "./EditComponents/AboutEdit";
 
 function Edit(props) {
   const {
@@ -10,42 +13,56 @@ function Edit(props) {
     heading,
     contents,
     subtitle,
+    Index,
+    title,
+    tasks,
+    setHeadData,
+    setAboutData,
     setHeading,
     setContents,
+    setCompleteData,
     setSubtitle,
+    data,
   } = props;
+  const [arr, setArr] = useState([]);
+  // const [check, setCheck] = useState("false");
+  const [current, setCurrent] = useState(tasks[Index]);
+  const [editComp, setEditComp] = useState(null);
+  const [head, setHead] = useState();
+  const [sub, setSub] = useState();
+  const [cont, setCont] = useState();
   useEffect(() => {
-    console.log("editsss", values);
+    console.log("editsss", title, Index);
+    setCurrent(tasks[Index]);
+    console.log("ello", tasks[Index]);
+    collectData();
   }, [props]);
+  const collectData = () => {
+    if (current && current.props && current.props.title === "About") {
+      console.log("crntsss", current.props);
+
+      setEditComp(
+        <AboutEdit
+        //heads={current.props.heading}
+        // setHead={setHead}
+        //subs={current.props.subtitle}
+        // setSub={setSub}
+        // check={check}
+        // setCheck={setCheck}
+        //conts={current.props.contents}
+        // setCont={setCont}
+        // setCompleteData={setCompleteData}
+        />
+      );
+    }
+  };
   return (
     <div>
       <label>
         {" "}
         <h3>Write here to edit </h3>
       </label>
-      <textarea
-        value={values.value}
-        onChange={(e) => {
-          var a = completedTasks;
-
-          //   a[index]=<About
-          //   subtitle={subtitle}
-          //   heading={heading}
-          //   contents={contents}
-          //   // setKeys={setKeys}
-          //   index={index}
-          //   setValues={setValues}
-          //   // setVisible={setVisible}
-          //   // visible={visible}
-          // />
-        }}
-        style={{
-          width: "100%",
-          minHeight: "200px",
-          maxHeight: "60px",
-          //   minHeight: "60px",
-        }}
-      />
+      {editComp}
     </div>
   );
 }
@@ -57,8 +74,19 @@ const mapStateToProps = (state) => {
 
   const tasks = User.completedTasks;
   const heading = User.data.Heading;
+  const data = User.data;
   const contents = User.data.Content;
   const subtitle = User.data.Subtitle;
-  return { User, tasks, heading, contents, subtitle };
+  const Index = User.index;
+  const title = User.title;
+
+  return { data, title, Index, User, tasks, heading, contents, subtitle };
 };
-export default connect(mapStateToProps)(Edit);
+const mapDispatchtoProps = (dispatch) => {
+  return {
+    setAboutData: (data) => dispatch(setData(data)),
+    setCompleteData: (data) => dispatch(setCompleted(data)),
+    setHeadData: (data) => dispatch(setHeading(data)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchtoProps)(Edit);
