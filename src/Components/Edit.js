@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setCompleted, setData, setHeading } from "../redux/ActionCreators";
 import About from "./About";
+import About2Edit from "./EditComponents/About2Edit";
 import AboutEdit from "./EditComponents/AboutEdit";
 
 function Edit(props) {
@@ -38,22 +39,20 @@ function Edit(props) {
     collectData();
   }, [props]);
   const collectData = () => {
-    if (current && current.props && current.props.title === "About") {
+    if (
+      tasks[Index] &&
+      tasks[Index].props &&
+      tasks[Index].props.title === "About"
+    ) {
       console.log("crntsss", current.props);
-
-      setEditComp(
-        <AboutEdit
-        //heads={current.props.heading}
-        // setHead={setHead}
-        //subs={current.props.subtitle}
-        // setSub={setSub}
-        // check={check}
-        // setCheck={setCheck}
-        //conts={current.props.contents}
-        // setCont={setCont}
-        // setCompleteData={setCompleteData}
-        />
-      );
+      setEditComp(<AboutEdit />);
+    }
+    if (
+      tasks[Index] &&
+      tasks[Index].props &&
+      tasks[Index].props.title === "About2"
+    ) {
+      setEditComp(<About2Edit />);
     }
   };
   return (

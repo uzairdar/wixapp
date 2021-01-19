@@ -10,7 +10,18 @@ import Main from "./Main";
 import SingleItem from "./SingleItem";
 import About from "./About";
 import Edit from "./Edit";
+import {
+  aboutHeading1,
+  aboutSubtitle1,
+  aboutContent1,
+  aboutHeading2,
+  aboutSubtitle2,
+  aboutContent2,
+  aboutSubCont,
+} from "./data/aboutData";
 import { loadCompleted, setAbout, setCompleted } from "../redux/ActionCreators";
+import Header2 from "./Header2";
+import AboutTwo from "./AboutTwo";
 const data = [
   {
     taskID: 1,
@@ -106,10 +117,10 @@ function Dash(props) {
     event.preventDefault();
     el.style.backgroundColor = "#9999ff";
   };
-  const onDrag = (event, todo) => {
+  const onDrag = (event, taskId) => {
     event.preventDefault();
 
-    setDraggedTask(todo);
+    setDraggedTask(taskId);
   };
   const onDragLeave = (event) => {
     event.preventDefault();
@@ -118,22 +129,50 @@ function Dash(props) {
   const onDrop = (event) => {
     var index;
     event.preventDefault();
-    if (draggedTask.taskID === 1) {
+    if (draggedTask === 1) {
       index = completedTasks.length;
-      setCompletedTasks((arr) => [...arr, <Header Editable="false" />]);
+      setCompletedTasks((arr) => [
+        ...arr,
+        <Header Editable="false" section="main" />,
+      ]);
       setDraggedTask({});
 
       el.style.backgroundColor = "silver";
-    } else if (draggedTask.taskID === 2) {
+    } else if (draggedTask === 2) {
       index = completedTasks.length;
       setCompletedTasks((arr) => [
         ...arr,
         <About
           section="main"
           title="About"
-          heading={heading}
-          subtitle={subtitle}
-          contents={contents}
+          heading={aboutHeading1}
+          subtitle={aboutSubtitle1}
+          contents={aboutContent1}
+          Editable="true"
+        />,
+      ]);
+      setDraggedTask({});
+      el.style.backgroundColor = "silver";
+    } else if (draggedTask === 11) {
+      index = completedTasks.length;
+      setCompletedTasks((arr) => [
+        ...arr,
+        <Header2 section="main" Editable="false" />,
+      ]);
+      setDraggedTask({});
+
+      el.style.backgroundColor = "silver";
+    } else if (draggedTask === 22) {
+      index = completedTasks.length;
+      setCompletedTasks((arr) => [
+        ...arr,
+        <AboutTwo
+          section="main"
+          title="About2"
+          heading={aboutHeading2}
+          subtitle={aboutSubtitle2}
+          subCont={aboutSubCont}
+          contents={aboutContent2}
           Editable="true"
         />,
       ]);
@@ -172,7 +211,7 @@ function Dash(props) {
         />
       </div>
       <div className="todos">
-        <Todo todos={todos} onDrag={onDrag} />
+        <Todo setDraggedTask={setDraggedTask} todos={todos} onDrag={onDrag} />
       </div>
     </div>
   );

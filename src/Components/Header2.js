@@ -1,32 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "./css/header.css";
 import { connect } from "react-redux";
-import profile from "./assets/profile.jpg";
+import header2 from "./assets/header2.jpg";
 import ButtonGroups from "./ButtonGroups";
 const showDropdown = () => {
   var x = document.getElementById("myTopnav");
   x.classList.toggle("topnavFull");
 };
 function Header2(props) {
-  const { index, goUp, goDown, moveUp, completedTasks, tasks } = props;
-  const imageUrl =
-    "http://demos.telerik.com/kendo-ui/content/shared/icons/16/star.png";
+  const { index, goUp, goDown, moveUp, completedTasks, tasks, section } = props;
+
   useEffect(() => {
     console.log("nte tasks", props.tasks);
   }, [completedTasks]);
   return (
-    <div style={{ height: "200px" }}>
-      {goUp && (
-        <ButtonGroups index={index} tasks={tasks} goUp={goUp} goDown={goDown} />
-      )}
-      {/* <div className="about-btns">
-        <button onClick={() => goUp(index, props.tasks)}>Up</button>
-        <button onClick={() => goDown(index, props.tasks)}>Down</button>
-      </div> */}
+    <div style={{}}>
       <img
-        src={profile}
-        width="100%"
-        height="180px"
+        src={header2}
+        style={
+          section === "main"
+            ? { width: "100%", height: "350px" }
+            : { width: "100%", height: "100%" }
+        }
         onClick={(e) => {
           e.preventDefault();
           //history.push('/Home')

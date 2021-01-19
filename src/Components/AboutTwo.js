@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./css/about.css";
-import about from "./assets/about.jpg";
+import profile from "./assets/profile.jpg";
 import { connect } from "react-redux";
 import ButtonGroups from "./ButtonGroups";
-function About(props) {
+function AboutTwo(props) {
   const {
     subtitle,
     newSub,
     newHead,
     newCont,
+    subCont,
     contents,
     index,
     title,
@@ -30,40 +31,25 @@ function About(props) {
   return (
     <div>
       <div className="main-cont">
+        <div className="onRight">
+          <div className="inner-cont">
+            <h3 className="heading">
+              {section === "main" ? heading : "no heading"}
+            </h3>
+            <p>{section === "main" ? subtitle : "no subtitle"} </p>
+            <p>{section === "main" ? subCont : "no subCont"}</p>
+            <p>{section === "main" ? contents : "no content"}</p>
+          </div>
+        </div>
         <div className="onLeft">
           <img
-            src={about}
+            src={profile}
             style={
               section === "main"
                 ? { width: "100%", height: "350px" }
                 : { width: "100%", height: "100%" }
             }
           />
-        </div>
-        <div className="onRight">
-          <div className="inner-cont">
-            <h3 className="heading">
-              {section === "main"
-                ? newHead
-                  ? newHead
-                  : heading
-                : "no heading"}
-            </h3>
-            <p>
-              {section === "main"
-                ? newSub
-                  ? newSub
-                  : subtitle
-                : "no subtitle"}{" "}
-            </p>
-            <p>
-              {section === "main"
-                ? newCont
-                  ? newCont
-                  : contents
-                : "no content"}
-            </p>
-          </div>
         </div>
       </div>
     </div>
@@ -75,4 +61,4 @@ const mapStateToProps = (state) => {
   const tasks = User.completedTasks;
   return { User, tasks };
 };
-export default connect(mapStateToProps)(About);
+export default connect(mapStateToProps)(AboutTwo);
