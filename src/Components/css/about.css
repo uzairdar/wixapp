@@ -21,8 +21,19 @@
   display: flex;
   justify-content: flex-end;
 }
+.drop {
+  background-color: white;
+  color: black;
+  padding: 6px;
+  margin: 0px;
+}
+.drop:hover {
+  background-color: tomato;
+  color: white;
+}
 .alignment {
   display: flex;
+  height: 30px;
   justify-content: space-between;
 }
 .inner-cont {
