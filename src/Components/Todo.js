@@ -53,35 +53,19 @@ function Todo(props) {
     }
   };
   return (
-    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+    <div className="todo-main">
       <div className="hidden">
-        {console.log("items", item)}
         {item && item.map((singleComp) => singleComp)}
       </div>
-      <div
-        style={{
-          width: "30%",
-          display: "flex",
-          // border: "1px solid black",
-          flexDirection: "column",
-          alignItems: "flex-end",
-        }}
-      >
+      <div className="todo-inner">
         {todos.map((todo) => (
           <div
-            // draggable
-            // onDrag={(event) => {
-            //   onDrag(event, todo);
-            // }}
             onMouseOver={(e) => {
               mouseOver(e, todo.taskID);
               setSingle(todo);
             }}
             key={todo.taskID}
-            style={{
-              marginBottom: "20px",
-              height: "50px",
-            }}
+            className="todo-items"
           >
             {todo.task}
           </div>
