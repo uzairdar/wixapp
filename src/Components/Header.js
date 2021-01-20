@@ -8,19 +8,19 @@ const showDropdown = () => {
   x.classList.toggle("topnavFull");
 };
 function Header(props) {
-  const { completedTasks, section } = props;
+  const { completedTasks, section, height } = props;
   const imageUrl =
     "http://demos.telerik.com/kendo-ui/content/shared/icons/16/star.png";
   useEffect(() => {
     console.log("nte tasks", props.tasks);
   }, [completedTasks]);
   return (
-    <div style={{}}>
+    <div style={{ height: height + "px" }} draggable>
       <img
         src={header}
         style={
           section === "main"
-            ? { width: "100%", height: "350px" }
+            ? { width: "100%", height: "100%" }
             : { width: "100%", height: "100%" }
         }
         onClick={(e) => {

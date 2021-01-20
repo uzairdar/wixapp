@@ -22,6 +22,7 @@ function AboutTwo(props) {
     goDown,
     goUp,
     setVisible,
+    height,
     setValues,
     // setKeys,
   } = props;
@@ -29,7 +30,7 @@ function AboutTwo(props) {
 
   const { tasks } = props;
   return (
-    <div>
+    <div style={{ height: height + "px" }} draggable>
       <div className="main-cont">
         <div className="onRight">
           <div className="inner-cont">
@@ -46,7 +47,7 @@ function AboutTwo(props) {
             src={profile}
             style={
               section === "main"
-                ? { width: "100%", height: "350px" }
+                ? { width: "100%", height: "100%" }
                 : { width: "100%", height: "100%" }
             }
           />

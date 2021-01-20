@@ -15,6 +15,7 @@ function About(props) {
     heading,
     values,
     section,
+    height,
     // setVisible,
     // visible,
     completedTasks,
@@ -28,14 +29,14 @@ function About(props) {
 
   const { tasks } = props;
   return (
-    <div>
+    <div draggable style={{ height: height + "px" }}>
       <div className="main-cont">
         <div className="onLeft">
           <img
             src={about}
             style={
               section === "main"
-                ? { width: "100%", height: "350px" }
+                ? { width: "100%", height: "100%" }
                 : { width: "100%", height: "100%" }
             }
           />

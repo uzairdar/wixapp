@@ -75,13 +75,7 @@ function Dash(props) {
         arr2[Index],
       ];
     }
-    // [
-    //   arr2[Index % arr2.length],
-    //   arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
-    // ] = [
-    //   arr2[(Index - 1 < 0 ? arr2.length - 1 : Index - 1) % arr2.length],
-    //   arr2[Index % arr2.length],
-    // ];
+
     setCompletedTasks(arr2);
     props.setCompleteData(arr2);
   };
@@ -91,24 +85,11 @@ function Dash(props) {
 
     var arr2 = tasks2;
 
-    // if (count + 1 < arr2.length) {
-    //   [arr2[count], arr2[count + 1]] = [arr2[count + 1], arr2[count]];
-    // }
-    // arr2[0] = arr2[arr2.length - 1];
-    // arr2[1] = temp;
-    // for (i = 2; i < arr2.length; i++) {
-    //   arr2[i] = arr2[i + 1];
-    // }
     if (Index !== tasks.length) {
       [arr2[Index], arr2[Index + 1]] = [arr2[Index + 1], arr2[Index]];
     } else {
       [arr2[Index], arr2[0]] = [arr2[0], arr2[Index]];
     }
-    // console.log("newar", arr2);
-    // [arr2[Index % arr2.length], arr2[(Index + 1) % arr2.length]] = [
-    //   arr2[(Index + 1) % arr2.length],
-    //   arr2[Index % arr2.length],
-    // ];
     console.log("check", arr2);
     setCompletedTasks(arr2);
     props.setCompleteData(arr2);
@@ -133,7 +114,7 @@ function Dash(props) {
       index = completedTasks.length;
       setCompletedTasks((arr) => [
         ...arr,
-        <Header Editable="false" section="main" />,
+        <Header title="Header" height="350" Editable="false" section="main" />,
       ]);
       setDraggedTask({});
 
@@ -145,6 +126,7 @@ function Dash(props) {
         <About
           section="main"
           title="About"
+          height="350"
           heading={aboutHeading1}
           subtitle={aboutSubtitle1}
           contents={aboutContent1}
@@ -157,7 +139,12 @@ function Dash(props) {
       index = completedTasks.length;
       setCompletedTasks((arr) => [
         ...arr,
-        <Header2 section="main" Editable="false" />,
+        <Header2
+          title="Header2"
+          height="350"
+          section="main"
+          Editable="false"
+        />,
       ]);
       setDraggedTask({});
 
@@ -169,6 +156,7 @@ function Dash(props) {
         <AboutTwo
           section="main"
           title="About2"
+          height="350"
           heading={aboutHeading2}
           subtitle={aboutSubtitle2}
           subCont={aboutSubCont}

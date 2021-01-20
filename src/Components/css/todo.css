@@ -4,3 +4,23 @@
   height: 150px;
   border-right: 1px solid black;
 }
+.todo-main {
+  display: flex;
+  justify-content: flex-end;
+}
+.todo-inner {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.todo-items {
+  margin-bottom: 20px;
+  width: 100%;
+  cursor: pointer;
+  height: 50px;
+}
+.todo-items:hover {
+  background-color: chartreuse;
+}

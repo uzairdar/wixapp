@@ -8,18 +8,27 @@ const showDropdown = () => {
   x.classList.toggle("topnavFull");
 };
 function Header2(props) {
-  const { index, goUp, goDown, moveUp, completedTasks, tasks, section } = props;
+  const {
+    index,
+    goUp,
+    goDown,
+    moveUp,
+    completedTasks,
+    tasks,
+    section,
+    height,
+  } = props;
 
   useEffect(() => {
     console.log("nte tasks", props.tasks);
   }, [completedTasks]);
   return (
-    <div style={{}}>
+    <div style={{ height: height + "px" }} draggable>
       <img
         src={header2}
         style={
           section === "main"
-            ? { width: "100%", height: "350px" }
+            ? { width: "100%", height: "100%" }
             : { width: "100%", height: "100%" }
         }
         onClick={(e) => {
