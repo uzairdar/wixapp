@@ -67,12 +67,12 @@ function Dash(props) {
   const goUp = (count, tasks2) => {
     console.log("index", Index);
     var arr2 = tasks2;
-    if (Index !== 0) {
-      [arr2[Index], arr2[Index - 1]] = [arr2[Index - 1], arr2[Index]];
+    if (count !== 0) {
+      [arr2[count], arr2[count - 1]] = [arr2[count - 1], arr2[count]];
     } else {
-      [arr2[Index], arr2[tasks.length - 1]] = [
+      [arr2[count], arr2[tasks.length - 1]] = [
         arr2[tasks.length - 1],
-        arr2[Index],
+        arr2[count],
       ];
     }
 
@@ -85,13 +85,13 @@ function Dash(props) {
 
     var arr2 = tasks2;
 
-    if (Index !== tasks.length) {
-      [arr2[Index], arr2[Index + 1]] = [arr2[Index + 1], arr2[Index]];
+    if (count !== tasks.length - 1) {
+      [arr2[count], arr2[count + 1]] = [arr2[count + 1], arr2[count]];
     } else {
-      [arr2[Index], arr2[0]] = [arr2[0], arr2[Index]];
+      [arr2[count], arr2[0]] = [arr2[0], arr2[count]];
     }
     console.log("check", arr2);
-    setCompletedTasks(arr2);
+    // setCompletedTasks(arr2);
     props.setCompleteData(arr2);
   };
   const onDragOver = (event) => {
@@ -100,7 +100,6 @@ function Dash(props) {
   };
   const onDrag = (event, taskId) => {
     event.preventDefault();
-
     setDraggedTask(taskId);
   };
   const onDragLeave = (event) => {
@@ -112,6 +111,7 @@ function Dash(props) {
     event.preventDefault();
     if (draggedTask === 1) {
       index = completedTasks.length;
+
       setCompletedTasks((arr) => [
         ...arr,
         <Header title="Header" height="350" Editable="false" section="main" />,

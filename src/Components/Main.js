@@ -19,6 +19,7 @@ function Main(props) {
   } = props;
   useEffect(() => {}, [tasks]);
   const [count, setCount] = useState(0);
+  const [image, setImage] = useState(null);
   return (
     <div>
       <Draggable>

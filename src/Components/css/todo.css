@@ -1,8 +1,7 @@
 .hidden {
   display: none;
   width: 70%;
-  height: 150px;
-  border-right: 1px solid black;
+  height: 100%;
 }
 .todo-main {
   display: flex;
@@ -11,6 +10,7 @@
 .todo-inner {
   width: 30%;
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
@@ -20,6 +20,9 @@
   width: 100%;
   cursor: pointer;
   height: 50px;
+}
+.border-cont:hover {
+  border: 2px solid chartreuse;
 }
 .todo-items:hover {
   background-color: chartreuse;

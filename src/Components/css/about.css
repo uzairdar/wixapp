@@ -4,6 +4,10 @@
   height: 100%;
   border: 1px solid black;
 }
+.main-cont:hover {
+  padding: 2px;
+  border: 2px solid chartreuse;
+}
 .onLeft {
   width: 50%;
   min-height: 100%;
