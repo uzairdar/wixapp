@@ -15,6 +15,7 @@ function AboutTwo(props) {
     title,
     heading,
     values,
+    image,
     section,
     // setVisible,
     // visible,
@@ -44,7 +45,7 @@ function AboutTwo(props) {
         </div>
         <div className="onLeft">
           <img
-            src={profile}
+            src={image ? image : profile}
             style={
               section === "main"
                 ? { width: "100%", height: "100%" }

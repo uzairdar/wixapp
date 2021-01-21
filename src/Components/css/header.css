@@ -1,135 +1,131 @@
+.main-container:hover {
+  /* border: 2px solid chartreuse; */
+}
 .topnav {
-    overflow: hidden;
-    background-color: #ff4d4d;
-    color:white;
-    height: 60px;
-    padding-top: 30px;
-    display: flex;
-    align-items: middle;
-  }
-  .btns{
-      background-color: #79ff4d;
-      border-radius: 10px;
-  }
-  .topnav a {
-    color: white;
-    text-align: left;
-    padding: 14px 16px;
-    text-decoration: none;
-    margin-right: 10px;
-    font-size: 20px;
-  }
-  
-  .topnav a:hover {
-    color: black;
-  }
-  .left{
-    width:20%;
-    display: flex;
-    flex-direction: row;
-    margin-top:-27px;
-    
-  }
-  
-  
-  .topnav a.active {
-    background-color: #4caf50;
-  }
-  
-  .topnav .icon {
+  overflow: hidden;
+  background-color: #ff4d4d;
+  color: white;
+  height: 60px;
+  padding-top: 30px;
+  display: flex;
+  align-items: middle;
+}
+.btns {
+  background-color: #79ff4d;
+  border-radius: 10px;
+}
+.topnav a {
+  color: white;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.topnav a:hover {
+  color: black;
+}
+.left {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  margin-top: -27px;
+}
+
+.topnav a.active {
+  background-color: #4caf50;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+#bars {
+  display: block;
+  cursor: pointer;
+  min-width: 35%;
+  font-size: 26px;
+  margin-right: 100px;
+}
+#logout {
+  margin-left: auto;
+  margin-right: 10px;
+}
+.sm-btn {
+  display: none;
+  padding: 0;
+}
+.sm-btn2 {
+  display: none;
+
+  padding: 0;
+}
+.drop-btn {
+  background-color: #00001a;
+  color: white;
+  min-width: 90px;
+  min-height: 35px;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+}
+@media screen and (max-width: 600px) {
+  #hide {
     display: none;
   }
-  
-  #bars {
+  .left {
+    margin-top: 0px;
+    width: 100%;
+  }
+  .sm-btn2 {
     display: block;
-    cursor: pointer;
-    min-width:35%;
-    font-size: 26px;
-    margin-right: 100px;
+    min-width: 2%;
+    margin-top: 15px;
   }
-  #logout {
-    margin-left: auto;
-    margin-right: 10px;
+  .sm-btn {
+    display: block;
+    max-width: 20%;
+    margin-top: 15px;
+    margin-left: 10%;
   }
-  .sm-btn{
-    display:none;
-    padding:0;
-    
+  #bars {
+    margin-right: 0px;
+    right: 0px;
+    display: flex;
+    max-width: 35%;
+    align-items: center;
+    min-height: 35px;
+    font-size: 30px;
   }
-  .sm-btn2{
-    display:none;
-    
-    padding:0;
-    
+  .onRight {
+    width: 100%;
   }
-  .drop-btn{
-    background-color:#00001a;
-    color:white;
-    min-width:90px;
-    min-height:35px;
-    border-radius: 7px;
-    border: none;
-    outline: none;
+  .topnav {
+    /* justify-content: flex-end; */
+    align-items: flex-start;
+    flex-direction: column;
+    min-height: 60px;
+    padding-top: 0px;
   }
-  @media screen and (max-width: 600px) {
-    #hide{
-      display: none;
-    }
-    .left{
-      margin-top:0px;
-      width:100%;
-    }
-    .sm-btn2{
-      display: block;
-      min-width:2%;
-      margin-top: 15px;
-     
-    }
-    .sm-btn{
-      display: block;
-      max-width:20%;
-      margin-top: 15px;
-      margin-left: 10%;
-    }
-    #bars{
-      margin-right: 0px;
-      right:0px;
-      display: flex;
-      max-width: 35%;
-      align-items: center;
-      min-height: 35px;
-      font-size: 30px;
-    }
-    .onRight{
-      width:100%;
-    }
-    .topnav {
-      /* justify-content: flex-end; */
-      align-items: flex-start;
-      flex-direction: column;
-      min-height: 60px;
-      padding-top: 0px;
-    }
-    /* .topnav a:not(:first-child) {
+  /* .topnav a:not(:first-child) {
       display: none;
     } */
-    .topnav a {
-      width: 90%;
-      height: 8%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-    }
-  
-    
-    .topnavFull {
-      height: 120vh;
-      align-items: flex-start;
-      transition: 0.5s ease-in-out;
-      position: absolute;
-      width: 100%;
-      z-index: 10000;
-    }
+  .topnav a {
+    width: 90%;
+    height: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
   }
-  
+
+  .topnavFull {
+    height: 120vh;
+    align-items: flex-start;
+    transition: 0.5s ease-in-out;
+    position: absolute;
+    width: 100%;
+    z-index: 10000;
+  }
+}

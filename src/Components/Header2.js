@@ -16,6 +16,7 @@ function Header2(props) {
     completedTasks,
     tasks,
     section,
+    image,
     height,
   } = props;
 
@@ -25,7 +26,7 @@ function Header2(props) {
   return (
     <div style={{ height: height + "px" }} draggable>
       <img
-        src={header2}
+        src={image ? image : header2}
         style={
           section === "main"
             ? { width: "100%", height: "100%" }

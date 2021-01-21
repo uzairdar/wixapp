@@ -12,6 +12,7 @@ function About(props) {
     contents,
     index,
     title,
+    image,
     heading,
     values,
     section,
@@ -33,7 +34,7 @@ function About(props) {
       <div className="main-cont">
         <div className="onLeft">
           <img
-            src={about}
+            src={image ? image : about}
             style={
               section === "main"
                 ? { width: "100%", height: "100%" }

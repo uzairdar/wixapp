@@ -55,7 +55,10 @@ function Todo(props) {
   return (
     <div className="todo-main">
       <div className="hidden">
-        {item && item.map((singleComp) => singleComp)}
+        {item &&
+          item.map((singleComp) => (
+            <div className="border-cont">{singleComp}</div>
+          ))}
       </div>
       <div className="todo-inner">
         {todos.map((todo) => (
