@@ -13,7 +13,7 @@ function Header(props) {
     console.log("nte tasks", props.tasks);
   }, [completedTasks]);
   return (
-    <div className="main-container" style={{ height: height + "px" }} draggable>
+    <div draggable className="main-container" style={{ height: height + "px" }}>
       <img
         src={image ? image : header}
         style={

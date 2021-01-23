@@ -23,6 +23,7 @@
 }
 .border-cont:hover {
   border: 2px solid chartreuse;
+  margin-top: 4px;
 }
 .todo-items:hover {
   background-color: chartreuse;

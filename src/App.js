@@ -4,7 +4,7 @@ import Dash from "./Components/Dash";
 
 function App() {
   return (
-    <div className="App">
+    <div style={{ minHeight: "50px" }}>
       <Dash />
     </div>
   );

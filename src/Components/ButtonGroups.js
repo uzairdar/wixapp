@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-
+import { Button } from "reactstrap";
 import { connect } from "react-redux";
 import { setCompleted, setIndex, setTitle } from "../redux/ActionCreators";
 import About from "./About";
@@ -116,13 +116,15 @@ function ButtonGroups({
     setCompleteData(newarr);
   };
   return (
-    <div>
+    <div className="show">
       {heightCheck && (
         <div className="alignment" onMouseLeave={() => setDrop(false)}>
           <div style={{ display: "flex" }}>
             {tasks[index].props.Editable === "true" && (
-              <button
-                className="btns-color"
+              <Button
+                // className="btns-color"
+                color="primary"
+                size="sm"
                 onClick={() => {
                   setIndexData(index);
                   setVisible(true);
@@ -130,12 +132,17 @@ function ButtonGroups({
                 }}
               >
                 Edit
-              </button>
+              </Button>
             )}
             {tasks[index].props.Editable === "false" && (
-              <button className="btns-color" onClick={() => setVisible(false)}>
+              <Button
+                color="primary"
+                size="sm"
+                className="btns-color"
+                onClick={() => setVisible(false)}
+              >
                 Cant edit
-              </button>
+              </Button>
             )}
             <div
               style={{
@@ -152,27 +159,35 @@ function ButtonGroups({
                     {single}
                   </p>
                 ))}
-              <button
-                className="btns-color"
+              <Button
+                // className="btns-color"
+                className="ml-1"
+                color="primary"
+                size="sm"
                 style={{ height: "100%" }}
                 onMouseOver={() => setDrop(!drop)}
               >
                 ...
-              </button>
+              </Button>
             </div>
           </div>
           <div className="about-btns">
-            <button
-              className="btns-color"
+            <Button
+              // className="btns-color"
+              color="primary"
+              size="sm"
               onClick={() => {
                 setVisible(false);
                 goUp(index, tasks);
               }}
             >
               Up
-            </button>
-            <button
-              className="btns-color"
+            </Button>
+            <Button
+              // className="btns-color"
+              color="primary"
+              size="sm"
+              className="ml-1"
               onClick={() => {
                 setVisible(false);
 
@@ -180,37 +195,45 @@ function ButtonGroups({
               }}
             >
               Down
-            </button>
+            </Button>
           </div>
         </div>
       )}
       {!heightCheck && (
         <div className="about-btns-left">
-          <button
-            className="btns-color"
+          <Button
+            //className="btns-color"
+            className="mr-1"
+            color="primary"
+            size="sm"
             onClick={() => {
               setHeight("plus");
             }}
           >
             Zoom in
-          </button>
-          <button
-            className="btns-color"
+          </Button>
+          <Button
+            // className="btns-color"
+            className="mr-1"
+            color="primary"
+            size="sm"
             onClick={() => {
               setHeight("minus");
             }}
           >
             Zoom out
-          </button>
-          <button
-            className="btns-color"
+          </Button>
+          <Button
+            // className="btns-color"
+            color="primary"
+            size="sm"
             onClick={() => {
               setHeightCheck(true);
               setDrop(false);
             }}
           >
             cancel
-          </button>
+          </Button>
         </div>
       )}
     </div>

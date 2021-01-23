@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setCompleted } from "../../redux/ActionCreators";
 import About from "../About";
+import { Input } from "reactstrap";
+
 import AboutTwo from "../AboutTwo";
 
 function About2Edit(props) {
@@ -22,7 +24,6 @@ function About2Edit(props) {
   const [cont, setCont] = useState(tasks[Index].props.contents);
 
   useEffect(() => {
-    console.log("hello ther", head);
     if (props) {
       setHead(tasks[Index].props.heading);
       setSub(tasks[Index].props.subtitle);
@@ -33,61 +34,23 @@ function About2Edit(props) {
   useEffect(() => {}, []);
   const changeVal = (title, value) => {
     var arr2 = tasks;
+    var tempProps = tasks[Index].props;
     if (title === "heading") {
-      arr2[Index] = (
-        <AboutTwo
-          section="main"
-          Editable="true"
-          title="About2"
-          heading={value}
-          subtitle={sub}
-          subCont={subCont}
-          contents={cont}
-        />
-      );
+      arr2[Index] = <AboutTwo {...tempProps} heading={value} />;
     } else if (title === "subtitle") {
-      arr2[Index] = (
-        <AboutTwo
-          section="main"
-          Editable="true"
-          title="About2"
-          heading={head}
-          subtitle={value}
-          subCont={subCont}
-          contents={cont}
-        />
-      );
+      arr2[Index] = <AboutTwo {...tempProps} subtitle={value} />;
     } else if (title === "subCont") {
-      arr2[Index] = (
-        <AboutTwo
-          section="main"
-          Editable="true"
-          title="About2"
-          heading={head}
-          subtitle={sub}
-          subCont={value}
-          contents={cont}
-        />
-      );
+      arr2[Index] = <AboutTwo {...tempProps} subCont={value} />;
     } else if (title === "content") {
-      arr2[Index] = (
-        <AboutTwo
-          section="main"
-          Editable="true"
-          title="About2"
-          heading={head}
-          subtitle={sub}
-          subCont={subCont}
-          contents={value}
-        />
-      );
+      arr2[Index] = <AboutTwo {...tempProps} contents={value} />;
     }
     setCompleteData(arr2);
   };
   return (
     <div>
       <label>Heading</label>
-      <textarea
+      <Input
+        type="textarea"
         value={head}
         onChange={(e) => {
           setHead(e.target.value);
@@ -101,7 +64,8 @@ function About2Edit(props) {
         }}
       />
       <label>Subtitle</label>
-      <textarea
+      <Input
+        type="textarea"
         value={sub}
         onChange={(e) => {
           setSub(e.target.value);
@@ -115,7 +79,8 @@ function About2Edit(props) {
         }}
       />
       <label>Sub-Cont</label>
-      <textarea
+      <Input
+        type="textarea"
         value={subCont}
         onChange={(e) => {
           setSubCont(e.target.value);
@@ -129,7 +94,8 @@ function About2Edit(props) {
         }}
       />
       <label>Content</label>
-      <textarea
+      <Input
+        type="textarea"
         value={cont}
         onChange={(e) => {
           setCont(e.target.value);
