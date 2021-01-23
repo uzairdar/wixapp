@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setCompleted } from "../../redux/ActionCreators";
 import About from "../About";
+import { Input } from "reactstrap";
 
 function AboutEdit(props) {
   const {
@@ -20,7 +21,6 @@ function AboutEdit(props) {
   const [cont, setCont] = useState(tasks[Index].props.contents);
 
   useEffect(() => {
-    console.log("hello ther", head);
     if (props) {
       setHead(tasks[Index].props.heading);
       setSub(tasks[Index].props.subtitle);
@@ -30,39 +30,14 @@ function AboutEdit(props) {
   useEffect(() => {}, []);
   const changeVal = (title, value) => {
     var arr2 = tasks;
+    var tempProps = tasks[Index].props;
+
     if (title === "heading") {
-      arr2[Index] = (
-        <About
-          section="main"
-          Editable="true"
-          title="About"
-          heading={value}
-          subtitle={sub}
-          contents={cont}
-        />
-      );
+      arr2[Index] = <About {...tempProps} heading={value} />;
     } else if (title === "subtitle") {
-      arr2[Index] = (
-        <About
-          section="main"
-          Editable="true"
-          title="About"
-          heading={head}
-          subtitle={value}
-          contents={cont}
-        />
-      );
+      arr2[Index] = <About {...tempProps} subtitle={value} />;
     } else if (title === "content") {
-      arr2[Index] = (
-        <About
-          section="main"
-          Editable="true"
-          title="About"
-          heading={head}
-          subtitle={sub}
-          contents={value}
-        />
-      );
+      arr2[Index] = <About {...tempProps} contents={value} />;
     }
     setCompleteData(arr2);
   };
@@ -70,7 +45,8 @@ function AboutEdit(props) {
     <div>
       <label>Heading</label>
       {console.log("inside prpos", props)}
-      <textarea
+      <Input
+        type="textarea"
         value={head}
         onChange={(e) => {
           setHead(e.target.value);
@@ -84,7 +60,8 @@ function AboutEdit(props) {
         }}
       />
       <label>Subtitle</label>
-      <textarea
+      <Input
+        type="textarea"
         value={sub}
         onChange={(e) => {
           setSub(e.target.value);
@@ -98,7 +75,8 @@ function AboutEdit(props) {
         }}
       />
       <label>Content</label>
-      <textarea
+      <Input
+        type="textarea"
         value={cont}
         onChange={(e) => {
           setCont(e.target.value);

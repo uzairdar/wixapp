@@ -4,7 +4,15 @@ import { setCompleted, setData, setHeading } from "../redux/ActionCreators";
 import About from "./About";
 import About2Edit from "./EditComponents/About2Edit";
 import AboutEdit from "./EditComponents/AboutEdit";
-
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+} from "reactstrap";
 function Edit(props) {
   const {
     values,
@@ -57,11 +65,17 @@ function Edit(props) {
   };
   return (
     <div>
-      <label>
-        {" "}
-        <h3>Write here to edit </h3>
-      </label>
-      {editComp}
+      <Card>
+        <label>
+          {" "}
+          <CardTitle>
+            <u>
+              <i>Write here to edit</i>
+            </u>{" "}
+          </CardTitle>
+        </label>
+        {editComp}
+      </Card>
     </div>
   );
 }

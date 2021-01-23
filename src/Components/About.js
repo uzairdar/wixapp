@@ -10,21 +10,10 @@ function About(props) {
     newHead,
     newCont,
     contents,
-    index,
-    title,
     image,
     heading,
-    values,
     section,
     height,
-    // setVisible,
-    // visible,
-    completedTasks,
-    goDown,
-    goUp,
-    setVisible,
-    setValues,
-    // setKeys,
   } = props;
   const [count, setCount] = useState(0);
 

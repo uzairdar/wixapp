@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ButtonGroups from "./ButtonGroups";
 import { connect } from "react-redux";
-import Content from "./Content";
 import Draggable from "react-draggable";
+import AddButton from "./AddButton";
 
 function Main(props) {
   const {
@@ -22,28 +22,29 @@ function Main(props) {
   const [image, setImage] = useState(null);
   return (
     <div>
-      <Draggable>
-        <div
-          onDrop={(event) => onDrop(event)}
-          onDragOver={(event) => onDragOver(event)}
-          onDragLeave={(event) => onDragLeave(event)}
-          className="drag"
-        >
-          <p>Drag Items here</p>
-        </div>
-      </Draggable>
+      <div
+        onDrop={(event) => onDrop(event)}
+        onDragOver={(event) => onDragOver(event)}
+        onDragLeave={(event) => onDragLeave(event)}
+        className="drag"
+      >
+        <p>Drag Items here</p>
+      </div>
+
       {tasks &&
         tasks.map((task, index) => (
-          <div style={{ minHeight: "200px" }} key={index}>
+          <div className="borders" style={{ minHeight: "200px" }} key={index}>
             <ButtonGroups
               setVisible={setVisible}
               index={index}
-              // tasks={tasks}
               editable={task.props.Editable}
               goUp={goUp}
               goDown={goDown}
             />
             {task}
+            <div className="show">
+              <AddButton index={index} />
+            </div>
           </div>
         ))}
     </div>

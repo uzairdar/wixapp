@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import "bootstrap/dist/css/bootstrap.min.css";
 import reportWebVitals from "./reportWebVitals";
 import UserReducer from "./redux/reducers/UserReducer";
 import thunk from "redux-thunk";
@@ -21,14 +22,9 @@ const store = createStore(
       : (f) => f
   )
 );
-//const a = "uzair";
-// store.dispatch(loadUser());
 export const StoreContext = React.createContext();
 ReactDOM.render(
   <React.StrictMode>
-    {/* <StoreContext.Provider value={store}>
-      <App />
-    </StoreContext.Provider> */}
     <Provider store={store}>
       <App />
     </Provider>

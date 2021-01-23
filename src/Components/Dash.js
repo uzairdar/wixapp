@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import Content from "./Content";
 import { connect } from "react-redux";
 import Header from "./Header";
 import ReactDOM from "react-dom";
@@ -169,7 +168,12 @@ function Dash(props) {
     }
   };
   return (
-    <div className="App" style={{ display: "flex" }}>
+    <div
+      style={{
+        display: "flex",
+        height: "100%",
+      }}
+    >
       {visible && (
         <div className="inputs">
           <Edit

@@ -2,15 +2,19 @@
   min-height: 800px;
 }
 .todos {
-  min-height: 100%;
+  height: 100%;
   width: 30%;
   margin: 10px;
 }
 .drag {
   background-color: silver;
   width: 100%;
+  position: sticky;
+  top: 0px;
+  z-index: 101;
   min-height: 100px;
   display: flex;
+
   justify-content: center;
   align-items: center;
 }
@@ -19,8 +23,19 @@
   margin: 10px;
   min-height: 100%;
 }
+.borders:hover {
+  border: 2px solid chartreuse;
+}
+.show {
+  display: none;
+}
+.borders:hover .show {
+  display: block;
+}
 .done {
-  min-height: 100%;
+  height: 100%;
+  max-height: 620px;
+  overflow-y: scroll;
   min-width: 50%;
   width: 80%;
   margin: 10px;
