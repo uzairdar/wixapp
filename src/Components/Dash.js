@@ -99,73 +99,76 @@ function Dash(props) {
   };
   const onDrag = (event, taskId) => {
     event.preventDefault();
+    console.log("object", event.target.style.opacity);
+    event.target.style.opacity = "1";
+
     setDraggedTask(taskId);
   };
   const onDragLeave = (event) => {
     event.preventDefault();
     el.style.backgroundColor = "silver";
   };
-  const onDrop = (event) => {
+  const onDrop = (event, location) => {
     var index;
     event.preventDefault();
+    var comp;
+    var temparr3 = completedTasks;
     if (draggedTask === 1) {
-      index = completedTasks.length;
-
-      setCompletedTasks((arr) => [
-        ...arr,
-        <Header title="Header" height="350" Editable="false" section="main" />,
-      ]);
+      comp = (
+        <Header
+          newCont="false"
+          title="Header"
+          height="350"
+          Editable="false"
+          section="main"
+        />
+      );
       setDraggedTask({});
-
-      el.style.backgroundColor = "silver";
     } else if (draggedTask === 2) {
-      index = completedTasks.length;
-      setCompletedTasks((arr) => [
-        ...arr,
+      comp = (
         <About
           section="main"
           title="About"
+          newCont="false"
           height="350"
           heading={aboutHeading1}
           subtitle={aboutSubtitle1}
           contents={aboutContent1}
           Editable="true"
-        />,
-      ]);
+        />
+      );
       setDraggedTask({});
-      el.style.backgroundColor = "silver";
     } else if (draggedTask === 11) {
-      index = completedTasks.length;
-      setCompletedTasks((arr) => [
-        ...arr,
+      comp = (
         <Header2
           title="Header2"
           height="350"
+          newCont="false"
           section="main"
           Editable="false"
-        />,
-      ]);
+        />
+      );
       setDraggedTask({});
-
-      el.style.backgroundColor = "silver";
     } else if (draggedTask === 22) {
-      index = completedTasks.length;
-      setCompletedTasks((arr) => [
-        ...arr,
+      comp = (
         <AboutTwo
           section="main"
           title="About2"
+          newCont="false"
           height="350"
           heading={aboutHeading2}
           subtitle={aboutSubtitle2}
           subCont={aboutSubCont}
           contents={aboutContent2}
           Editable="true"
-        />,
-      ]);
+        />
+      );
+
       setDraggedTask({});
-      el.style.backgroundColor = "silver";
     }
+    temparr3.splice(location + 1, 0, comp);
+    setCompletedTasks(temparr3);
+    el.style.backgroundColor = "silver";
   };
   return (
     <div

@@ -12,7 +12,7 @@ function Todo(props) {
 
   const [item, setItem] = useState([]);
   const [single, setSingle] = useState();
-  const mouseOver = (e, taskID) => {
+  const handleClick = (e, taskID) => {
     console.log("here it is");
     var a = document.querySelector(".hidden");
     a.style.display = "block";
@@ -63,8 +63,8 @@ function Todo(props) {
       <div className="todo-inner">
         {todos.map((todo) => (
           <div
-            onMouseOver={(e) => {
-              mouseOver(e, todo.taskID);
+            onClick={(e) => {
+              handleClick(e, todo.taskID);
               setSingle(todo);
             }}
             key={todo.taskID}

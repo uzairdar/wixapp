@@ -48,68 +48,35 @@ function ButtonGroups({
 
     var newarr = tasks;
     var selectedComp;
+    var tempProps = tasks[index].props;
     if (tasks[index].props.title === "Header") {
       if (selected === "plus") {
         newHeight = (parseInt(newProps.height) + 30).toString();
       } else {
         newHeight = (parseInt(newProps.height) - 30).toString();
       }
-      selectedComp = (
-        <Header
-          title="Header"
-          height={newHeight}
-          section="main"
-          Editable="false"
-        />
-      );
+      selectedComp = <Header {...tempProps} height={newHeight} />;
     } else if (tasks[index].props.title === "Header2") {
       if (selected === "plus") {
         newHeight = (parseInt(newProps.height) + 30).toString();
       } else {
         newHeight = (parseInt(newProps.height) - 30).toString();
       }
-      selectedComp = (
-        <Header2
-          title="Header2"
-          height={newHeight}
-          section="main"
-          Editable="false"
-        />
-      );
+      selectedComp = <Header2 {...tempProps} height={newHeight} />;
     } else if (tasks[index].props.title === "About") {
       if (selected === "plus") {
         newHeight = (parseInt(newProps.height) + 30).toString();
       } else {
         newHeight = (parseInt(newProps.height) - 30).toString();
       }
-      selectedComp = (
-        <About
-          section="main"
-          title="About"
-          height={newHeight}
-          heading={tasks[index].props.heading}
-          subtitle={tasks[index].props.subtitle}
-          contents={tasks[index].props.contents}
-          Editable="true"
-        />
-      );
+      selectedComp = <About {...tempProps} height={newHeight} />;
     } else if (tasks[index].props.title === "About2") {
       if (selected === "plus") {
         newHeight = (parseInt(newProps.height) + 30).toString();
       } else {
         newHeight = (parseInt(newProps.height) - 30).toString();
       }
-      selectedComp = (
-        <AboutTwo
-          section="main"
-          title="About2"
-          height={newHeight}
-          heading={tasks[index].props.heading}
-          subtitle={tasks[index].props.subtitle}
-          contents={tasks[index].props.contents}
-          Editable="true"
-        />
-      );
+      selectedComp = <AboutTwo {...tempProps} height={newHeight} />;
     }
 
     newarr[index] = selectedComp;

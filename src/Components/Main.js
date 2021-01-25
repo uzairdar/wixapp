@@ -20,20 +20,23 @@ function Main(props) {
   useEffect(() => {}, [tasks]);
   const [count, setCount] = useState(0);
   const [image, setImage] = useState(null);
-  return (
-    <div>
-      <div
-        onDrop={(event) => onDrop(event)}
-        onDragOver={(event) => onDragOver(event)}
-        onDragLeave={(event) => onDragLeave(event)}
-        className="drag"
-      >
-        <p>Drag Items here</p>
-      </div>
+  const [selected, setSelected] = useState(null);
 
+  return (
+    <div style={{ minHeight: window.innerHeight - 20 + "px" }}>
+      {tasks.length === 0 && (
+        <div
+          onDrop={(event) => onDrop(event, 0)}
+          onDragOver={(event) => onDragOver(event)}
+          onDragLeave={(event) => onDragLeave(event)}
+          className="drag"
+        >
+          <p>Drag Items here</p>
+        </div>
+      )}
       {tasks &&
         tasks.map((task, index) => (
-          <div className="borders" style={{ minHeight: "200px" }} key={index}>
+          <div className="borders" style={{ height: "100%" }} key={index}>
             <ButtonGroups
               setVisible={setVisible}
               index={index}
@@ -41,9 +44,24 @@ function Main(props) {
               goUp={goUp}
               goDown={goDown}
             />
-            {task}
+            <div>{task}</div>
+
+            {selected === index && (
+              <div
+                onDrop={(event) => onDrop(event, index)}
+                onDragOver={(event) => onDragOver(event)}
+                onDragLeave={(event) => onDragLeave(event)}
+                className="drag"
+              >
+                <p>Drag Items here</p>
+              </div>
+            )}
             <div className="show">
-              <AddButton index={index} />
+              <AddButton
+                setSelected={setSelected}
+                selected={selected}
+                index={index}
+              />
             </div>
           </div>
         ))}
@@ -52,8 +70,6 @@ function Main(props) {
 }
 const mapStateToProps = (state) => {
   console.log("state", state.User);
-  // const { user } = state.state;
-  // const {tasks}=
   const { User } = state;
   const heading = User.data.Heading;
   const tasks = User.completedTasks;
