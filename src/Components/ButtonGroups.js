@@ -45,7 +45,6 @@ function ButtonGroups({
   const setHeight = (selected) => {
     var newProps = tasks[index].props;
     var newHeight;
-
     var newarr = tasks;
     var selectedComp;
     var tempProps = tasks[index].props;

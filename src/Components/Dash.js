@@ -115,13 +115,7 @@ function Dash(props) {
     var temparr3 = completedTasks;
     if (draggedTask === 1) {
       comp = (
-        <Header
-          newCont="false"
-          title="Header"
-          height="350"
-          Editable="false"
-          section="main"
-        />
+        <Header title="Header" height="350" Editable="false" section="main" />
       );
       setDraggedTask({});
     } else if (draggedTask === 2) {
@@ -129,7 +123,6 @@ function Dash(props) {
         <About
           section="main"
           title="About"
-          newCont="false"
           height="350"
           heading={aboutHeading1}
           subtitle={aboutSubtitle1}
@@ -140,13 +133,7 @@ function Dash(props) {
       setDraggedTask({});
     } else if (draggedTask === 11) {
       comp = (
-        <Header2
-          title="Header2"
-          height="350"
-          newCont="false"
-          section="main"
-          Editable="false"
-        />
+        <Header2 title="Header2" height="350" section="main" Editable="false" />
       );
       setDraggedTask({});
     } else if (draggedTask === 22) {
@@ -154,7 +141,6 @@ function Dash(props) {
         <AboutTwo
           section="main"
           title="About2"
-          newCont="false"
           height="350"
           heading={aboutHeading2}
           subtitle={aboutSubtitle2}

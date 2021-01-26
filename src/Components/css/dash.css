@@ -26,10 +26,17 @@
 .borders:hover {
   border: 2px solid chartreuse;
 }
+#showTop {
+  /* margin-top: -2.5vh; */
+  /* display: none; */
+}
 .show {
   display: none;
 }
 .borders:hover .show {
+  display: block;
+}
+.borders:hover #showTop {
   display: block;
 }
 .done {
