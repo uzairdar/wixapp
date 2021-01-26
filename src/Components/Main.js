@@ -37,7 +37,7 @@ function Main(props) {
           <p>Drag Items here</p>
         </div>
       )}
-      {tasks.length !== 0 && !show && (
+      {/* {tasks.length !== 0 && !show && (
         <div
           id="showTop"
           onClick={() => {
@@ -60,18 +60,33 @@ function Main(props) {
         >
           <p>Drag Items here</p>
         </div>
+      )} */}
+      {selected === -1 && (
+        <div
+          onDrop={(event) => {
+            setSelected(-100);
+            onDrop(event, -1);
+          }}
+          onDragOver={(event) => onDragOver(event)}
+          onDragLeave={(event) => onDragLeave(event)}
+          className="drag"
+        >
+          <p>Drag Items here</p>
+        </div>
       )}
-
       {tasks &&
         tasks.map((task, index) => (
           <div className="borders" style={{ height: "100%" }} key={index}>
-            {/* <div className="showTop">
+            <div
+              className="show"
+              style={{ height: "2.5vh", marginTop: "-2.5vh" }}
+            >
               <AddButton
                 setSelected={setSelected}
                 selected={selected}
-                index={index}
+                index={index - 1}
               />
-            </div> */}
+            </div>
             <ButtonGroups
               setVisible={setVisible}
               index={index}
@@ -83,7 +98,10 @@ function Main(props) {
 
             {selected === index && (
               <div
-                onDrop={(event) => onDrop(event, index)}
+                onDrop={(event) => {
+                  setSelected(-100);
+                  onDrop(event, index);
+                }}
                 onDragOver={(event) => onDragOver(event)}
                 onDragLeave={(event) => onDragLeave(event)}
                 className="drag"
