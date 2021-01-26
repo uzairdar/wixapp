@@ -17,13 +17,16 @@ function Main(props) {
     tasks,
     setVisible,
   } = props;
-  useEffect(() => {}, [tasks]);
   const [count, setCount] = useState(0);
   const [image, setImage] = useState(null);
   const [selected, setSelected] = useState(null);
+  const [show, setShow] = useState(false);
+  useEffect(() => {}, [tasks]);
 
   return (
-    <div style={{ minHeight: window.innerHeight - 20 + "px" }}>
+    <div
+      style={{ minHeight: window.innerHeight - 20 + "px", marginTop: "20px" }}
+    >
       {tasks.length === 0 && (
         <div
           onDrop={(event) => onDrop(event, 0)}
@@ -34,9 +37,41 @@ function Main(props) {
           <p>Drag Items here</p>
         </div>
       )}
+      {tasks.length !== 0 && !show && (
+        <div
+          id="showTop"
+          onClick={() => {
+            setShow(true);
+            setSelected(-2);
+          }}
+        >
+          <AddButton setSelected={setSelected} selected={selected} index={-1} />
+        </div>
+      )}
+      {show && (
+        <div
+          onDrop={(event) => {
+            setShow(false);
+            onDrop(event, -1);
+          }}
+          onDragOver={(event) => onDragOver(event)}
+          onDragLeave={(event) => onDragLeave(event)}
+          className="drag"
+        >
+          <p>Drag Items here</p>
+        </div>
+      )}
+
       {tasks &&
         tasks.map((task, index) => (
           <div className="borders" style={{ height: "100%" }} key={index}>
+            {/* <div className="showTop">
+              <AddButton
+                setSelected={setSelected}
+                selected={selected}
+                index={index}
+              />
+            </div> */}
             <ButtonGroups
               setVisible={setVisible}
               index={index}
@@ -56,7 +91,7 @@ function Main(props) {
                 <p>Drag Items here</p>
               </div>
             )}
-            <div className="show">
+            <div className="show" onClick={() => setShow(false)}>
               <AddButton
                 setSelected={setSelected}
                 selected={selected}

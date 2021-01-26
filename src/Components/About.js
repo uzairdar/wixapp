@@ -4,17 +4,7 @@ import about from "./assets/about.jpg";
 import { connect } from "react-redux";
 import ButtonGroups from "./ButtonGroups";
 function About(props) {
-  const {
-    subtitle,
-    newSub,
-    newHead,
-    newCont,
-    contents,
-    image,
-    heading,
-    section,
-    height,
-  } = props;
+  const { subtitle, contents, image, heading, section, height } = props;
   const [count, setCount] = useState(0);
 
   const { tasks } = props;
@@ -34,26 +24,10 @@ function About(props) {
         <div className="onRight">
           <div className="inner-cont">
             <h3 className="heading">
-              {section === "main"
-                ? newHead
-                  ? newHead
-                  : heading
-                : "no heading"}
+              {section === "main" ? heading : "no heading"}
             </h3>
-            <p>
-              {section === "main"
-                ? newSub
-                  ? newSub
-                  : subtitle
-                : "no subtitle"}{" "}
-            </p>
-            <p>
-              {section === "main"
-                ? newCont
-                  ? newCont
-                  : contents
-                : "no content"}
-            </p>
+            <p>{section === "main" ? subtitle : "no subtitle"} </p>
+            <p>{section === "main" ? contents : "no content"}</p>
           </div>
         </div>
       </div>
