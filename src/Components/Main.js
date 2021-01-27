@@ -6,14 +6,13 @@ import AddButton from "./AddButton";
 
 function Main(props) {
   const {
-    contents,
-    setContents,
-    completedTasks,
     onDragOver,
     onDragLeave,
     onDrop,
     goDown,
+    setEdit,
     goUp,
+    setDesignVisible,
     tasks,
     setVisible,
   } = props;
@@ -79,6 +78,7 @@ function Main(props) {
           <div className="borders" style={{ height: "100%" }} key={index}>
             <div
               className="show"
+              onClick={() => setEdit(true)}
               style={{ height: "2.5vh", marginTop: "-2.5vh" }}
             >
               <AddButton
@@ -89,6 +89,7 @@ function Main(props) {
             </div>
             <ButtonGroups
               setVisible={setVisible}
+              setDesignVisible={setDesignVisible}
               index={index}
               editable={task.props.Editable}
               goUp={goUp}
@@ -109,7 +110,8 @@ function Main(props) {
                 <p>Drag Items here</p>
               </div>
             )}
-            <div className="show" onClick={() => setShow(false)}>
+
+            <div className="show" onClick={() => setEdit(true)}>
               <AddButton
                 setSelected={setSelected}
                 selected={selected}

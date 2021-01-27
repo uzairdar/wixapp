@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import { Button, Card, CardHeader, CardTitle } from "reactstrap";
 
 import About from "./About";
 import AboutTwo from "./AboutTwo";
@@ -8,7 +8,7 @@ import Header from "./Header";
 import Header2 from "./Header2";
 
 function Todo(props) {
-  const { todos, onDrag, setDraggedTask } = props;
+  const { todos, onDrag, setDraggedTask, setEdit } = props;
 
   const [item, setItem] = useState([]);
   const [single, setSingle] = useState();
@@ -53,26 +53,33 @@ function Todo(props) {
     }
   };
   return (
-    <div className="todo-main">
-      <div className="hidden">
-        {item &&
-          item.map((singleComp) => (
-            <div className="border-cont">{singleComp}</div>
+    <div>
+      {/* <div>
+        <Button size="sm " color="primary" onClick={() => setEdit(false)}>
+          X
+        </Button>
+      </div> */}
+      <div className="todo-main">
+        <div className="hidden">
+          {item &&
+            item.map((singleComp) => (
+              <div className="border-cont">{singleComp}</div>
+            ))}
+        </div>
+        <div className="todo-inner">
+          {todos.map((todo) => (
+            <div
+              onClick={(e) => {
+                handleClick(e, todo.taskID);
+                setSingle(todo);
+              }}
+              key={todo.taskID}
+              className="todo-items"
+            >
+              {todo.task}
+            </div>
           ))}
-      </div>
-      <div className="todo-inner">
-        {todos.map((todo) => (
-          <div
-            onClick={(e) => {
-              handleClick(e, todo.taskID);
-              setSingle(todo);
-            }}
-            key={todo.taskID}
-            className="todo-items"
-          >
-            {todo.task}
-          </div>
-        ))}
+        </div>
       </div>
     </div>
   );

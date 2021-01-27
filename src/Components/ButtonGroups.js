@@ -15,9 +15,8 @@ function ButtonGroups({
   goUp,
   goDown,
   setCompleteData,
-  Editable,
   setVisible,
-  setTitleData,
+  setDesignVisible,
   setIndexData,
 }) {
   const options = ["Duplicate", "Height", "Delete"];
@@ -87,28 +86,51 @@ function ButtonGroups({
         <div className="alignment" onMouseLeave={() => setDrop(false)}>
           <div style={{ display: "flex" }}>
             {tasks[index].props.Editable === "true" && (
-              <Button
-                // className="btns-color"
-                color="primary"
-                size="sm"
-                onClick={() => {
-                  setIndexData(index);
-                  setVisible(true);
-                  // setTitleData(title);
-                }}
-              >
-                Edit
-              </Button>
+              <div>
+                <Button
+                  color="primary"
+                  size="sm"
+                  className="mr-1"
+                  onClick={() => {
+                    setIndexData(index);
+                    setDesignVisible(false);
+                    setVisible(true);
+                  }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  color="primary"
+                  size="sm"
+                  onClick={() => {
+                    setIndexData(index);
+                    setVisible(false);
+
+                    setDesignVisible(true);
+                  }}
+                >
+                  Design
+                </Button>
+              </div>
             )}
             {tasks[index].props.Editable === "false" && (
-              <Button
-                color="primary"
-                size="sm"
-                className="btns-color"
-                onClick={() => setVisible(false)}
-              >
-                Cant edit
-              </Button>
+              <div>
+                <Button
+                  color="primary"
+                  size="sm"
+                  className="mr-1"
+                  onClick={() => setVisible(false)}
+                >
+                  Can't edit
+                </Button>
+                <Button
+                  color="primary"
+                  size="sm"
+                  onClick={() => setVisible(false)}
+                >
+                  Can't Design
+                </Button>
+              </div>
             )}
             <div
               style={{

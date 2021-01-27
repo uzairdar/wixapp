@@ -2,21 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./css/about.css";
 import about from "./assets/about.jpg";
 import { connect } from "react-redux";
-import ButtonGroups from "./ButtonGroups";
-function About(props) {
-  const {
-    subtitle,
-    contents,
-    image,
-    heading,
-    section,
-    height,
-    headHeight,
-    subHeight,
-  } = props;
-  const [count, setCount] = useState(0);
+function AboutTemp1(props) {
+  const { subtitle, contents, image, heading, section, height } = props;
 
-  const { tasks } = props;
   return (
     <div draggable style={{ height: height + "px" }}>
       <div className="main-cont">
@@ -32,18 +20,11 @@ function About(props) {
         </div>
         <div className="onRight">
           <div className="inner-cont">
-            <h3
-              className="heading"
-              style={{ fontSize: headHeight && headHeight }}
-            >
+            <h3 className="heading">
               {section === "main" ? heading : "no heading"}
             </h3>
-            <p className="para" style={{ fontSize: subHeight && subHeight }}>
-              {section === "main" ? subtitle : "no subtitle"}{" "}
-            </p>
-            <p className="para" style={{ fontSize: subHeight && subHeight }}>
-              {section === "main" ? contents : "no content"}
-            </p>
+            <p>{section === "main" ? subtitle : "no subtitle"} </p>
+            <p>{section === "main" ? contents : "no content"}</p>
           </div>
         </div>
       </div>
@@ -56,4 +37,4 @@ const mapStateToProps = (state) => {
   const tasks = User.completedTasks;
   return { User, tasks };
 };
-export default connect(mapStateToProps)(About);
+export default connect(mapStateToProps)(AboutTemp1);

@@ -1,45 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setCompleted, setData, setHeading } from "../redux/ActionCreators";
-import About from "./About";
 import About2Edit from "./EditComponents/About2Edit";
 import AboutEdit from "./EditComponents/AboutEdit";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-} from "reactstrap";
+import "./css/edit.css";
+import { Button, Card, CardTitle } from "reactstrap";
 function Edit(props) {
-  const {
-    values,
-    setValues,
-    completedTasks,
-    setCompletedTasks,
-    heading,
-    contents,
-    subtitle,
-    Index,
-    title,
-    tasks,
-    setHeadData,
-    setAboutData,
-    setHeading,
-    setContents,
-    setCompleteData,
-    setSubtitle,
-    data,
-  } = props;
+  const { Index, title, tasks, setVisible } = props;
   const [arr, setArr] = useState([]);
   // const [check, setCheck] = useState("false");
   const [current, setCurrent] = useState(tasks[Index]);
   const [editComp, setEditComp] = useState(null);
-  const [head, setHead] = useState();
-  const [sub, setSub] = useState();
-  const [cont, setCont] = useState();
   useEffect(() => {
     console.log("editsss", title, Index);
     setCurrent(tasks[Index]);
@@ -66,6 +37,11 @@ function Edit(props) {
   return (
     <div>
       <Card>
+        <div className="crossbtn">
+          <Button size="sm " color="primary" onClick={() => setVisible(false)}>
+            X
+          </Button>
+        </div>
         <label>
           {" "}
           <CardTitle>
@@ -80,20 +56,14 @@ function Edit(props) {
   );
 }
 const mapStateToProps = (state) => {
-  // const { user } = state.state;
-  // const {tasks}=
   const { User } = state;
   console.log("state", User);
 
   const tasks = User.completedTasks;
-  const heading = User.data.Heading;
-  const data = User.data;
-  const contents = User.data.Content;
-  const subtitle = User.data.Subtitle;
   const Index = User.index;
   const title = User.title;
 
-  return { data, title, Index, User, tasks, heading, contents, subtitle };
+  return { Index, title, tasks };
 };
 const mapDispatchtoProps = (dispatch) => {
   return {
