@@ -3,14 +3,13 @@
 }
 .todos {
   height: 100%;
-  width: 30%;
+  width: 35%;
   margin: 10px;
 }
 .drag {
   background-color: silver;
   width: 100%;
-  position: sticky;
-  top: 0px;
+
   z-index: 101;
   min-height: 100px;
   display: flex;
@@ -43,7 +42,7 @@
   height: 100%;
   max-height: 620px;
   overflow-y: scroll;
-  min-width: 50%;
-  width: 80%;
+  min-width: 45%;
+  width: 100%;
   margin: 10px;
 }

@@ -21,6 +21,7 @@ import {
 import { loadCompleted, setAbout, setCompleted } from "../redux/ActionCreators";
 import Header2 from "./Header2";
 import AboutTwo from "./AboutTwo";
+import Design from "./Design";
 const data = [
   {
     taskID: 1,
@@ -36,15 +37,14 @@ function Dash(props) {
   const { tasks } = props;
   const { Index } = props;
   const [todos, setTodos] = useState(data);
-  const [listItems, setListItems] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
   const [draggedTask, setDraggedTask] = useState({});
   const [visible, setVisible] = useState(false);
+  const [designVisible, setDesignVisible] = useState(false);
   const [check, setCheck] = useState(false);
   const [values, setValues] = useState({});
+  const [edit, setEdit] = useState(true);
   const [heading, setHeading] = useState("About");
-  const [tempArr, setTempArr] = useState([]);
-  const [keys, setKeys] = useState(null);
   const [subtitle, setSubtitle] = useState("Subtitles");
   // const [index, setIndex] = useState(0);
   const [contents, setContents] = useState(
@@ -56,15 +56,10 @@ function Dash(props) {
   }, []);
   useEffect(() => {
     setCheck(false);
-    // console.log("uoiuiu", props.loadData());
     props.setCompleteData(completedTasks);
-    console.log("propss are", props);
-
-    // props.setAboutData({ heading, subtitle, contents });
   }, [completedTasks, check]);
 
   const goUp = (count, tasks2) => {
-    console.log("index", Index);
     var arr2 = tasks2;
     if (count !== 0) {
       [arr2[count], arr2[count - 1]] = [arr2[count - 1], arr2[count]];
@@ -80,7 +75,6 @@ function Dash(props) {
   };
   const goDown = (count, tasks2) => {
     var arr2 = tasks2;
-    console.log("index", count);
 
     var arr2 = tasks2;
 
@@ -110,6 +104,7 @@ function Dash(props) {
   };
   const onDrop = (event, location) => {
     var index;
+    setEdit(false);
     event.preventDefault();
     var comp;
     var temparr3 = completedTasks;
@@ -163,6 +158,11 @@ function Dash(props) {
         height: "100%",
       }}
     >
+      {designVisible && (
+        <div className="inputs">
+          <Design setVisible={setVisible} setDesignVisible={setDesignVisible} />
+        </div>
+      )}
       {visible && (
         <div className="inputs">
           <Edit
@@ -171,6 +171,7 @@ function Dash(props) {
             setHeading={setHeading}
             setContents={setContents}
             contents={contents}
+            setVisible={setVisible}
             heading={heading}
             subtitle={subtitle}
             setSubtitle={setSubtitle}
@@ -180,20 +181,28 @@ function Dash(props) {
       <div className="done">
         <Main
           setContents={setContents}
-          // completedTasks={tasks}
           contents={contents}
+          setEdit={setEdit}
           goDown={goDown}
           section="main"
           setVisible={setVisible}
+          setDesignVisible={setDesignVisible}
           goUp={goUp}
           onDrop={onDrop}
           onDragLeave={onDragLeave}
           onDragOver={onDragOver}
         />
       </div>
-      <div className="todos">
-        <Todo setDraggedTask={setDraggedTask} todos={todos} onDrag={onDrag} />
-      </div>
+      {edit && (
+        <div className="todos">
+          <Todo
+            setDraggedTask={setDraggedTask}
+            setEdit={setEdit}
+            todos={todos}
+            onDrag={onDrag}
+          />
+        </div>
+      )}
     </div>
   );
 }

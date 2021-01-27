@@ -6,26 +6,14 @@ import ButtonGroups from "./ButtonGroups";
 function AboutTwo(props) {
   const {
     subtitle,
-    newSub,
-    newHead,
-    newCont,
     subCont,
     contents,
-    index,
-    title,
+    headHeight,
+    subHeight,
     heading,
-    values,
     image,
     section,
-    // setVisible,
-    // visible,
-    completedTasks,
-    goDown,
-    goUp,
-    setVisible,
     height,
-    setValues,
-    // setKeys,
   } = props;
   const [count, setCount] = useState(0);
 
@@ -35,12 +23,21 @@ function AboutTwo(props) {
       <div className="main-cont">
         <div className="onRight">
           <div className="inner-cont">
-            <h3 className="heading">
+            <h3
+              className="heading"
+              style={{ fontSize: headHeight && headHeight }}
+            >
               {section === "main" ? heading : "no heading"}
             </h3>
-            <p>{section === "main" ? subtitle : "no subtitle"} </p>
-            <p>{section === "main" ? subCont : "no subCont"}</p>
-            <p>{section === "main" ? contents : "no content"}</p>
+            <p style={{ fontSize: subHeight && subHeight }}>
+              {section === "main" ? subtitle : "no subtitle"}{" "}
+            </p>
+            <p style={{ fontSize: subHeight && subHeight }}>
+              {section === "main" ? subCont : "no subCont"}
+            </p>
+            <p style={{ fontSize: subHeight && subHeight }}>
+              {section === "main" ? contents : "no content"}
+            </p>
           </div>
         </div>
         <div className="onLeft">
