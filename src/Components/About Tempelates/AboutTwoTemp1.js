@@ -1,38 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "../css/about.css";
-import about from "../assets/about.jpg";
+import profile from "../assets/profile.jpg";
 import { connect } from "react-redux";
-function AboutTemp1(props) {
+function AboutTwoTemp1(props) {
   const {
     subtitle,
+    subCont,
     contents,
-    image,
-    heading,
-    section,
-    height,
     headHeight,
     subHeight,
+    heading,
+    image,
+    section,
+    height,
   } = props;
   const [count, setCount] = useState(0);
 
   const { tasks } = props;
   return (
-    <div draggable style={{ height: height + "px" }}>
+    <div style={{ height: height + "px" }} draggable>
       <div className="main-cont">
-        <div className="onLeft">
-          <img
-            src={image ? image : about}
-            style={
-              section === "main"
-                ? { width: "100%", height: "100%" }
-                : { width: "100%", height: "100%" }
-            }
-          />
-        </div>
         <div className="onRight">
           <div className="inner-cont">
-            <p className="para" style={{ fontSize: subHeight && subHeight }}>
-              {section === "main" ? subtitle : "no subtitle"}{" "}
+            <p style={{ fontSize: subHeight && subHeight }}>
+              {section === "main" ? subCont : "no subCont"}
             </p>
             <h3
               className="heading"
@@ -40,10 +31,24 @@ function AboutTemp1(props) {
             >
               {section === "main" ? heading : "no heading"}
             </h3>
-            <p className="para" style={{ fontSize: subHeight && subHeight }}>
+
+            <p style={{ fontSize: subHeight && subHeight }}>
+              {section === "main" ? subtitle : "no subtitle"}{" "}
+            </p>
+            <p style={{ fontSize: subHeight && subHeight }}>
               {section === "main" ? contents : "no content"}
             </p>
           </div>
+        </div>
+        <div className="onLeft">
+          <img
+            src={image ? image : profile}
+            style={
+              section === "main"
+                ? { width: "100%", height: "100%" }
+                : { width: "100%", height: "100%" }
+            }
+          />
         </div>
       </div>
     </div>
@@ -55,4 +60,4 @@ const mapStateToProps = (state) => {
   const tasks = User.completedTasks;
   return { User, tasks };
 };
-export default connect(mapStateToProps)(AboutTemp1);
+export default connect(mapStateToProps)(AboutTwoTemp1);

@@ -32,6 +32,9 @@ function AboutTemp1(props) {
         <div className="onRight">
           <div className="inner-cont">
             <p className="para" style={{ fontSize: subHeight && subHeight }}>
+              {section === "main" ? contents : "no content"}
+            </p>
+            <p className="para" style={{ fontSize: subHeight && subHeight }}>
               {section === "main" ? subtitle : "no subtitle"}{" "}
             </p>
             <h3
@@ -40,9 +43,6 @@ function AboutTemp1(props) {
             >
               {section === "main" ? heading : "no heading"}
             </h3>
-            <p className="para" style={{ fontSize: subHeight && subHeight }}>
-              {section === "main" ? contents : "no content"}
-            </p>
           </div>
         </div>
       </div>

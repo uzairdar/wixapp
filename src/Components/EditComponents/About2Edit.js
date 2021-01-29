@@ -5,6 +5,8 @@ import About from "../About";
 import { Input } from "reactstrap";
 
 import AboutTwo from "../AboutTwo";
+import AboutTwoTemp1 from "../About Tempelates/AboutTwoTemp1";
+import AboutTwoTemp2 from "../About Tempelates/AboutTwoTemp2";
 
 function About2Edit(props) {
   const {
@@ -35,14 +37,36 @@ function About2Edit(props) {
   const changeVal = (title, value) => {
     var arr2 = tasks;
     var tempProps = tasks[Index].props;
-    if (title === "heading") {
-      arr2[Index] = <AboutTwo {...tempProps} heading={value} />;
-    } else if (title === "subtitle") {
-      arr2[Index] = <AboutTwo {...tempProps} subtitle={value} />;
-    } else if (title === "subCont") {
-      arr2[Index] = <AboutTwo {...tempProps} subCont={value} />;
-    } else if (title === "content") {
-      arr2[Index] = <AboutTwo {...tempProps} contents={value} />;
+    if (!tempProps.template) {
+      if (title === "heading") {
+        arr2[Index] = <AboutTwo {...tempProps} heading={value} />;
+      } else if (title === "subtitle") {
+        arr2[Index] = <AboutTwo {...tempProps} subtitle={value} />;
+      } else if (title === "subCont") {
+        arr2[Index] = <AboutTwo {...tempProps} subCont={value} />;
+      } else if (title === "content") {
+        arr2[Index] = <AboutTwo {...tempProps} contents={value} />;
+      }
+    } else if (tempProps.template === "temp1") {
+      if (title === "heading") {
+        arr2[Index] = <AboutTwoTemp1 {...tempProps} heading={value} />;
+      } else if (title === "subtitle") {
+        arr2[Index] = <AboutTwoTemp1 {...tempProps} subtitle={value} />;
+      } else if (title === "subCont") {
+        arr2[Index] = <AboutTwoTemp1 {...tempProps} subCont={value} />;
+      } else if (title === "content") {
+        arr2[Index] = <AboutTwoTemp1 {...tempProps} contents={value} />;
+      }
+    } else if (tempProps.template === "temp2") {
+      if (title === "heading") {
+        arr2[Index] = <AboutTwoTemp2 {...tempProps} heading={value} />;
+      } else if (title === "subtitle") {
+        arr2[Index] = <AboutTwoTemp2 {...tempProps} subtitle={value} />;
+      } else if (title === "subCont") {
+        arr2[Index] = <AboutTwoTemp2 {...tempProps} subCont={value} />;
+      } else if (title === "content") {
+        arr2[Index] = <AboutTwoTemp2 {...tempProps} contents={value} />;
+      }
     }
     setCompleteData(arr2);
   };
