@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { setCompleted } from "../../redux/ActionCreators";
 import About from "../About";
 import { Input } from "reactstrap";
+import { faTemperatureHigh } from "@fortawesome/free-solid-svg-icons";
+import AboutTemp1 from "../About Tempelates/AboutTemp1";
+import AboutTemp2 from "../About Tempelates/AboutTemp2";
 
 function AboutEdit(props) {
   const {
@@ -31,13 +34,30 @@ function AboutEdit(props) {
   const changeVal = (title, value) => {
     var arr2 = tasks;
     var tempProps = tasks[Index].props;
-
-    if (title === "heading") {
-      arr2[Index] = <About {...tempProps} heading={value} />;
-    } else if (title === "subtitle") {
-      arr2[Index] = <About {...tempProps} subtitle={value} />;
-    } else if (title === "content") {
-      arr2[Index] = <About {...tempProps} contents={value} />;
+    if (!tempProps.template) {
+      if (title === "heading") {
+        arr2[Index] = <About {...tempProps} heading={value} />;
+      } else if (title === "subtitle") {
+        arr2[Index] = <About {...tempProps} subtitle={value} />;
+      } else if (title === "content") {
+        arr2[Index] = <About {...tempProps} contents={value} />;
+      }
+    } else if (tempProps.template === "temp1") {
+      if (title === "heading") {
+        arr2[Index] = <AboutTemp1 {...tempProps} heading={value} />;
+      } else if (title === "subtitle") {
+        arr2[Index] = <AboutTemp1 {...tempProps} subtitle={value} />;
+      } else if (title === "content") {
+        arr2[Index] = <AboutTemp1 {...tempProps} contents={value} />;
+      }
+    } else if (tempProps.template === "temp2") {
+      if (title === "heading") {
+        arr2[Index] = <AboutTemp2 {...tempProps} heading={value} />;
+      } else if (title === "subtitle") {
+        arr2[Index] = <AboutTemp2 {...tempProps} subtitle={value} />;
+      } else if (title === "content") {
+        arr2[Index] = <AboutTemp2 {...tempProps} contents={value} />;
+      }
     }
     setCompleteData(arr2);
   };

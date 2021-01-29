@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaPen } from "react-icons/fa";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { Button } from "reactstrap";
@@ -8,6 +9,10 @@ import About from "./About";
 import AboutTwo from "./AboutTwo";
 import Header from "./Header";
 import Header2 from "./Header2";
+import AboutTemp1 from "./About Tempelates/AboutTemp1";
+import AboutTemp2 from "./About Tempelates/AboutTemp2";
+import AboutTwoTemp1 from "./About Tempelates/AboutTwoTemp1";
+import AboutTwoTemp2 from "./About Tempelates/AboutTwoTemp2";
 
 function ButtonGroups({
   index,
@@ -67,14 +72,26 @@ function ButtonGroups({
       } else {
         newHeight = (parseInt(newProps.height) - 30).toString();
       }
-      selectedComp = <About {...tempProps} height={newHeight} />;
+      if (!tasks[index].props.template) {
+        selectedComp = <About {...tempProps} height={newHeight} />;
+      } else if (tasks[index].props.template === "temp1") {
+        selectedComp = <AboutTemp1 {...tempProps} height={newHeight} />;
+      } else if (tasks[index].props.template === "temp2") {
+        selectedComp = <AboutTemp2 {...tempProps} height={newHeight} />;
+      }
     } else if (tasks[index].props.title === "About2") {
       if (selected === "plus") {
         newHeight = (parseInt(newProps.height) + 30).toString();
       } else {
         newHeight = (parseInt(newProps.height) - 30).toString();
       }
-      selectedComp = <AboutTwo {...tempProps} height={newHeight} />;
+      if (!tasks[index].props.template) {
+        selectedComp = <AboutTwo {...tempProps} height={newHeight} />;
+      } else if (tasks[index].props.template === "temp1") {
+        selectedComp = <AboutTwoTemp1 {...tempProps} height={newHeight} />;
+      } else if (tasks[index].props.template === "temp2") {
+        selectedComp = <AboutTwoTemp2 {...tempProps} height={newHeight} />;
+      }
     }
 
     newarr[index] = selectedComp;
@@ -97,6 +114,9 @@ function ButtonGroups({
                     setVisible(true);
                   }}
                 >
+                  <FaPen
+                    style={{ marginRight: "0.5vw", marginBottom: "0.5vh" }}
+                  />
                   Edit
                 </Button>
                 <Button

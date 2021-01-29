@@ -55,9 +55,8 @@ function Dash(props) {
     setCompletedTasks(tasks);
   }, []);
   useEffect(() => {
-    setCheck(false);
     props.setCompleteData(completedTasks);
-  }, [completedTasks, check]);
+  }, [completedTasks]);
 
   const goUp = (count, tasks2) => {
     var arr2 = tasks2;
@@ -70,7 +69,7 @@ function Dash(props) {
       ];
     }
 
-    setCompletedTasks(arr2);
+    // setCompletedTasks(arr2);
     props.setCompleteData(arr2);
   };
   const goDown = (count, tasks2) => {
